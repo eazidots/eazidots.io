@@ -9,23 +9,49 @@ const NotFound = () => {
   return (
     <>
       <Head>
-        <title>Awesome Portfolio Built with Nextjs | 404 Page </title>
+        <title>Emmanuel Dotse Azilafu | 404 Page Not Found</title>
+        <meta name="description" content="Page not found - Return to Emmanuel Dotse Azilafu's portfolio" />
       </Head>
       <TransitionEffect />
-      <main className="h-[100vh] w-full dark:bg-dark ">
-        <Layout className="relative !bg-transparent !pt-16 flex flex-col items-center justify-center">
-          <AnimatedText text="404" className=" " />
-          <AnimatedText text="Page Not Found." className=" !text-7xl " />
-          <Link
-            href="/"
-            className="self-center !mt-4 inline-block rounded-lg border-2 border-solid bg-dark px-4 py-2
-        font-semibold text-light hover:border-dark hover:bg-light hover:text-dark 
-        dark:bg-light dark:text-dark hover:dark:bg-dark hover:dark:text-light hover:dark:border-light
-        "
-          >
-            Go To Home
-          </Link>
-        </Layout>
+      <main className="h-[100vh] w-full dark:text-light relative overflow-hidden">
+        {/* 404 Page Gradient Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-coffee-lightest via-coffee-light/40 to-coffee-dark dark:from-coffee-darkest dark:via-coffee-dark/35 dark:to-coffee-lightest z-0"></div>
+        <div className="absolute inset-0 bg-gradient-to-tl from-transparent via-coffee-light/15 to-transparent dark:from-transparent dark:via-coffee-dark/15 dark:to-transparent z-0"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-coffee-light/20 to-transparent dark:from-transparent dark:via-coffee-dark/20 dark:to-transparent z-0"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-coffee-light/8 to-transparent dark:from-transparent dark:via-coffee-dark/8 dark:to-transparent z-0"></div>
+        
+        {/* Content */}
+        <div className="relative z-10 w-full h-full">
+          <Layout className="relative !bg-transparent !pt-16 flex flex-col items-center justify-center h-full">
+            <div className="bg-light/40 dark:bg-dark/40 backdrop-blur-xl rounded-2xl p-12 border border-coffee-light/20 dark:border-coffee-dark/20 shadow-lg relative overflow-hidden text-center">
+              {/* 404 Card Gradient Background */}
+              <div className="absolute inset-0 bg-gradient-to-br from-light/30 via-coffee-light/15 to-coffee-dark/30 dark:from-dark/30 dark:via-coffee-dark/10 dark:to-coffee-light/30 z-0"></div>
+              <div className="absolute inset-0 bg-gradient-to-tl from-transparent via-coffee-light/4 to-transparent dark:from-transparent dark:via-coffee-dark/4 dark:to-transparent z-0"></div>
+              
+              {/* 404 Content */}
+              <div className="relative z-10">
+                <AnimatedText text="404" className="!text-9xl !text-coffee-dark dark:!text-coffee-light mb-4" />
+                <AnimatedText text="Page Not Found." className="!text-4xl lg:!text-3xl md:!text-2xl !text-dark dark:!text-light mb-8" />
+                
+                <p className="text-dark/80 dark:text-light/80 text-lg mb-8 max-w-md mx-auto leading-relaxed">
+                  The page you're looking for doesn't exist. Let's get you back to exploring my work.
+                </p>
+                
+                <Link
+                  href="/"
+                  className="inline-flex items-center rounded-lg border-2 border-solid bg-coffee-light/50 dark:bg-coffee-dark/50 backdrop-blur-xl px-6 py-3
+                  font-semibold text-dark dark:text-light hover:border-coffee-dark dark:hover:border-coffee-light hover:bg-coffee-dark/20 dark:hover:bg-coffee-light/20 
+                  border-coffee-dark/20 dark:border-coffee-light/20 shadow-lg relative overflow-hidden
+                  transition-all duration-300"
+                >
+                  {/* Button Gradient Background */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-light/40 via-coffee-light/10 to-transparent dark:from-dark/40 dark:via-coffee-dark/10 dark:to-transparent z-0"></div>
+                  <span className="relative z-10">← Return Home</span>
+                </Link>
+              </div>
+            </div>
+          </Layout>
+        </div>
       </main>
     </>
   );

@@ -1,12 +1,27 @@
 {
-  "name": "NexTemp",
+  "name": "eazidots-portfolio",
   "private": true,
   "version": "1.0.0",
-  "author": "Travis Lord <hi@travislord.xyz>",
+  "author": "Emmanuel Dotse Azilafu <dotse@eazidots.com>",
+  "description": "Portfolio of Emmanuel Dotse Azilafu - Full-stack developer, IT infrastructure manager, and scientific computing specialist.",
+  "homepage": "https://eazidots.com",
+  "keywords": [
+    "Emmanuel Dotse Azilafu",
+    "eazidots",
+    "portfolio",
+    "full-stack developer",
+    "IT infrastructure",
+    "scientific computing",
+    "Next.js",
+    "FastAPI",
+    "Django",
+    "Rust"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "postbuild": "next-sitemap",
+    "sitemap": "next-sitemap",
     "start": "next start",
     "lint": "next lint"
   },

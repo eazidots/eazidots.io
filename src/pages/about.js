@@ -1,8 +1,6 @@
 import Layout from "@/components/Layout";
 import Head from "next/head";
-import Image from "next/image";
-import profile from "../../public/images/profile/Riley.png";
-import { useInView, useMotionValue, useSpring } from "framer-motion";
+import { useInView, useMotionValue, useSpring, motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import Skills from "@/components/Skills";
 import Experience from "@/components/Experience";
@@ -10,7 +8,7 @@ import AnimatedText from "@/components/AnimatedText";
 import TransitionEffect from "@/components/TransitionEffect";
 import { HireMe2 } from "@/components/HireMe2";
 
-function AnimatedNumberFramerMotion({ value }) {
+function AnimatedNumberFramerMotion({ value, text }) {
   const ref = useRef(null);
   const motionValue = useMotionValue(0);
   const springValue = useSpring(motionValue, { duration: 3000 });
@@ -31,129 +29,168 @@ function AnimatedNumberFramerMotion({ value }) {
     [springValue, value]
   );
 
-  return <span ref={ref} />;
+  return (
+    <div className="flex flex-col items-center justify-center">
+      <span className="inline-block text-7xl font-bold md:text-6xl sm:text-5xl xs:text-4xl text-grey-dark dark:text-grey-light">
+        <span ref={ref} />+
+      </span>
+      <h3 className="mb-4 text-xl font-medium capitalize text-grey-dark/75 dark:text-grey-light/75 
+        text-center md:text-lg sm:text-base xs:text-sm">
+        {text}
+      </h3>
+    </div>
+  );
 }
 
 export default function About() {
   return (
     <>
       <Head>
-        <title>About NexTemp</title>
+        <title>About Emmanuel Dotse Azilafu - Tech Journey</title>
         <meta
           name="description"
-          content="NexTemp, A open-source portfolio theme built with Nextjs"
+          content="Journey of Emmanuel Dotse Azilafu from computer science student to full-stack developer and IT infrastructure manager."
         />
       </Head>
 
       <TransitionEffect />
-      <main
-        className={`flex  w-full flex-col items-center justify-center dark:text-light`}
-      >
-        <Layout className="pt-16">
-          <AnimatedText
-            text="Let Passion Lead Your Purpose 🔥"
-            className="mb-16 !text-8xl !leading-tight lg:!text-7xl sm:!text-6xl xs:!text-4xl sm:mb-8"
-          />
+      <main className="flex w-full flex-col items-center justify-center dark:text-light relative overflow-hidden">
+        {/* Grey Theme Gradient Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-grey-lightest via-grey-light/40 to-grey-dark dark:from-grey-darkest dark:via-grey-dark/40 dark:to-grey-lightest z-0"></div>
+        <div className="absolute inset-0 bg-gradient-to-tl from-transparent via-grey-light/15 to-transparent dark:from-transparent dark:via-grey-dark/15 dark:to-transparent z-0"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-grey-light/20 to-transparent dark:from-transparent dark:via-grey-dark/20 dark:to-transparent z-0"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-grey-light/8 to-transparent dark:from-transparent dark:via-grey-dark/8 dark:to-transparent z-0"></div>
+        
+        {/* Content */}
+        <div className="relative z-10 w-full">
+          <Layout className="pt-16">
+            <AnimatedText
+              text="Bridging Technology & Innovation"
+              className="mb-16 !text-6xl !leading-tight lg:!text-5xl sm:!text-4xl xs:!text-3xl sm:mb-8 text-center"
+            />
 
-          <div className="grid w-full grid-cols-8 gap-16 sm:gap-8">
-            <div
-              className="col-span-3 flex flex-col items-start justify-start xl:col-span-4 md:order-2 
-            md:col-span-8"
-            >
-              <h2 className="mb-4 text-lg font-bold uppercase text-dark/75 dark:text-light/75">
-                BIOGRAPHY
-              </h2>
-              <p className="font-medium ">
-                I'm Riley, a dedicated web developer at Stellar Innovations,
-                where I specialize in creating dynamic and user-centric web
-                experiences. With over a decade of experience in the industry, I
-                have honed my skills in both front-end and back-end
-                technologies, allowing me to deliver responsive and
-                high-performance websites and applications.
-              </p>
-              <p className="my-4 font-medium">
-                At Stellar Innovations, I've had the opportunity to work on
-                numerous high-profile projects that have challenged and expanded
-                my expertise. My technical skill set includes HTML, CSS,
-                JavaScript, React, and Node.js, among other technologies. One of
-                my notable projects involved developing a comprehensive
-                e-commerce platform that streamlined the user experience and
-                significantly boosted the client's sales. Another project I’m
-                particularly proud of was creating an interactive web
-                application for a major event, which received widespread acclaim
-                for its intuitive design and seamless performance.
-              </p>
-              <p className="my-4 font-medium">
-                P.s I'm a big fan of anime and not a real person ✌️.
-              </p>
-            </div>
-            <div
-              className="relative col-span-3 h-max rounded-2xl border-2 border-solid border-dark 
-            bg-light p-8 dark:border-light dark:bg-dark
-            xl:col-span-4 md:col-span-8 md:order-1
-            "
-            >
-              <div
-                className="absolute  top-0 -right-3 -z-10 h-[103%] w-[102%]  rounded-[2rem] rounded-br-3xl 
-                bg-dark
-        dark:bg-light  "
-              />
-              <Image
-                className="h-auto w-full rounded-2xl border-2 border-solid border-dark"
-                priority={true}
-                src={profile}
-                alt="Travis Lord"
-                sizes="(max-width: 768px) 100vw,
-              (max-width: 1200px) 50vw,
-              33vw"
-              />
-            </div>
-            <div
-              className="col-span-2 flex flex-col items-end justify-between xl:col-span-8 xl:flex-row 
-            xl:items-center md:order-3"
-            >
-              <div className="flex flex-col items-end justify-center xl:items-center">
-                <span className="inline-block text-7xl font-bold md:text-6xl sm:text-5xl xs:text-4xl">
-                  <AnimatedNumberFramerMotion value={1461} />+
-                </span>
-                <h3
-                  className="mb-4 text-xl font-medium capitalize text-dark/75 dark:text-light/75 
-                xl:text-center md:text-lg sm:text-base xs:text-sm"
+            <div className="flex w-full items-center justify-center">
+              <div className="flex w-full flex-col items-center justify-center text-center max-w-4xl">
+                <motion.h2 
+                  className="mb-8 text-2xl font-bold uppercase text-grey-dark dark:text-grey-light"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
                 >
-                  Days of Coding
-                </h3>
-              </div>
+                  MY JOURNEY
+                </motion.h2>
 
-              <div className="flex flex-col items-end justify-center xl:items-center">
-                <span className="inline-block text-7xl font-bold md:text-6xl sm:text-5xl xs:text-4xl">
-                  <AnimatedNumberFramerMotion value={500} />
-                </span>
-                <h3
-                  className="mb-4 text-xl font-medium capitalize text-dark/75 dark:text-light/75 
-                xl:text-center md:text-lg sm:text-base xs:text-sm"
-                >
-                  Bugs Made
-                </h3>
-              </div>
+                <div className="font-medium space-y-8 mb-12">
+                  <motion.p 
+                    className="text-grey-dark/90 dark:text-grey-light/90 text-lg leading-relaxed"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
+                  >
+                    My journey in technology began in the halls of KNUST, where I pursued Computer Science with a 
+                    curiosity that would shape my career. Starting in technical support at the Faculty of Allied 
+                    Health Science, I gained firsthand experience in maintaining critical systems in an academic 
+                    environment. This foundation in IT infrastructure proved invaluable as I progressed through 
+                    increasingly challenging roles in healthcare technology and enterprise systems.
+                  </motion.p>
 
-              <div className="flex flex-col items-end justify-center xl:items-center">
-                <span className="inline-block text-7xl font-bold md:text-6xl sm:text-5xl xs:text-4xl">
-                  <AnimatedNumberFramerMotion value={499} />
-                </span>
-                <h3
-                  className="mb-4 text-xl font-medium capitalize text-dark/75 dark:text-light/75 
-                xl:text-center md:text-lg sm:text-base xs:text-sm"
+                  <motion.p 
+                    className="text-grey-dark/90 dark:text-grey-light/90 text-lg leading-relaxed"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                  >
+                    My career evolution reflects my passion for bridging complex technical challenges with practical 
+                    solutions. From managing critical healthcare systems at Ruma Fertility Hospital to optimizing 
+                    enterprise infrastructure at Clean Team Ghana, each role has added new dimensions to my expertise. 
+                    Now, at SASEL Programmers Lab with McGill University, I'm combining my infrastructure knowledge 
+                    with advanced development skills, creating scientific computing solutions that push the boundaries 
+                    of what's possible with modern technology.
+                  </motion.p>
+                </div>
+
+                {/* Animated Numbers */}
+                <motion.div 
+                  className="grid grid-cols-3 gap-8 w-full mb-16"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
                 >
-                  Bugs Crushed
-                </h3>
+                  <AnimatedNumberFramerMotion value={4} text="Years of Professional Experience" />
+                  <AnimatedNumberFramerMotion value={15} text="Projects Completed" />
+                  <AnimatedNumberFramerMotion value={3} text="Research Projects" />
+                </motion.div>
+
+                {/* Current Focus Section */}
+                <motion.div 
+                  className="w-full mb-16"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
+                >
+                  <h2 className="font-bold text-3xl mb-6 text-grey-dark dark:text-grey-light">Current Focus</h2>
+                  <div className="bg-light/40 dark:bg-dark/40 backdrop-blur-xl rounded-2xl p-8 border border-grey-light/20 dark:border-grey-dark/20">
+                    <p className="text-grey-dark/90 dark:text-grey-light/90 text-lg leading-relaxed">
+                      At SASEL Programmers Lab (McGill University), I'm focused on developing scientific computing solutions 
+                      that bridge the gap between complex research requirements and user-friendly applications. Building on my 
+                      experience in IT infrastructure and systems management, our projects combine high-performance computing 
+                      using Rust with modern web technologies to create powerful tools for researchers and analysts. From 
+                      protein analysis systems to supply chain optimization platforms, each project pushes the boundaries of 
+                      what's possible in scientific software development.
+                    </p>
+                  </div>
+                </motion.div>
+
+                {/* Research Projects Section */}
+                <motion.div 
+                  className="w-full"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.5 }}
+                >
+                  <h2 className="font-bold text-3xl mb-8 text-grey-dark dark:text-grey-light">Research Projects at McGill University</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="bg-light/40 dark:bg-dark/40 backdrop-blur-xl rounded-2xl p-8 border border-grey-light/20 dark:border-grey-dark/20">
+                      <h3 className="text-2xl font-bold mb-4 text-grey-dark dark:text-grey-light">PEA Protein Analysis</h3>
+                      <p className="text-grey-dark/90 dark:text-grey-light/90 mb-6 leading-relaxed">
+                        Advanced scientific computing system combining Rust's computational power with modern web technologies for protein analysis.
+                        Features complex algorithms, real-time processing, and intuitive data visualization.
+                      </p>
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        <span className="text-xs px-3 py-1 bg-grey-light/30 rounded-full text-grey-dark dark:text-grey-light font-medium backdrop-blur-sm border border-grey-light/20 dark:border-grey-dark/30">Rust</span>
+                        <span className="text-xs px-3 py-1 bg-grey-light/30 rounded-full text-grey-dark dark:text-grey-light font-medium backdrop-blur-sm border border-grey-light/20 dark:border-grey-dark/30">Next.js</span>
+                        <span className="text-xs px-3 py-1 bg-grey-light/30 rounded-full text-grey-dark dark:text-grey-light font-medium backdrop-blur-sm border border-grey-light/20 dark:border-grey-dark/30">FastAPI</span>
+                      </div>
+                      <div className="text-sm text-grey-dark/80 dark:text-grey-light/80">
+                        SASEL Lab Project • Starting May 2025
+                      </div>
+                    </div>
+
+                    <div className="bg-light/40 dark:bg-dark/40 backdrop-blur-xl rounded-2xl p-8 border border-grey-light/20 dark:border-grey-dark/20">
+                      <h3 className="text-2xl font-bold mb-4 text-grey-dark dark:text-grey-light">Supply Chain Analytics</h3>
+                      <p className="text-grey-dark/90 dark:text-grey-light/90 mb-6 leading-relaxed">
+                        Research-focused platform for analyzing economic, environmental, and quality factors in supply chain operations.
+                        Implements advanced analytics and interactive visualization for decision support.
+                      </p>
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        <span className="text-xs px-3 py-1 bg-grey-light/30 rounded-full text-grey-dark dark:text-grey-light font-medium backdrop-blur-sm border border-grey-light/20 dark:border-grey-dark/30">Next.js</span>
+                        <span className="text-xs px-3 py-1 bg-grey-light/30 rounded-full text-grey-dark dark:text-grey-light font-medium backdrop-blur-sm border border-grey-light/20 dark:border-grey-dark/30">FastAPI</span>
+                        <span className="text-xs px-3 py-1 bg-grey-light/30 rounded-full text-grey-dark dark:text-grey-light font-medium backdrop-blur-sm border border-grey-light/20 dark:border-grey-dark/30">Django</span>
+                      </div>
+                      <div className="text-sm text-grey-dark/80 dark:text-grey-light/80">
+                        SASEL Lab Project • Starting August 2025
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
               </div>
             </div>
-            <HireMe2 />
-          </div>
 
-          <Skills />
-          <Experience />
-        </Layout>
+            <Skills />
+            <Experience />
+          </Layout>
+        </div>
+        <HireMe2 />
       </main>
     </>
   );

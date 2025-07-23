@@ -5,25 +5,34 @@ import Layout from "./Layout";
 const Footer = () => {
   return (
     <footer
-      className="w-full border-t-0 border-solid border-dark
-    font-base text-lg dark:text-light dark:border-light sm:text-base
+      className="w-full border-t border-solid border-grey-light/10 dark:border-grey-dark/10
+    font-base text-lg dark:text-light sm:text-base relative overflow-hidden
+    bg-light/40 dark:bg-dark/40 backdrop-blur-xl
     "
     >
-      <Layout className="py-8 flex items-center justify-center lg:flex-col lg:py-6">
-        <span>&copy; {new Date().getFullYear()}</span>
+      {/* Footer Gradient Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-light/30 via-coffee-light/15 to-grey-lightest/30 dark:from-dark/30 dark:via-coffee-dark/10 dark:to-grey-darkest/30 z-0"></div>
+      <div className="absolute inset-0 bg-gradient-to-tl from-transparent via-primary/4 to-transparent dark:from-transparent dark:via-primaryDark/4 dark:to-transparent z-0"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-grey-light/8 to-transparent dark:from-transparent dark:via-grey-dark/8 dark:to-transparent z-0"></div>
+      
+      {/* Footer Content */}
+      <div className="relative z-10">
+        <Layout className="py-8 flex items-center justify-center lg:flex-col lg:py-6">
+          <span className="text-dark/80 dark:text-light/80">&copy; {new Date().getFullYear()} Emmanuel Dotse Azilafu</span>
 
-        <div className="flex items-center lg:py-2 ml-2">
-          Built <span className="text-2xl px-1"></span>
-          {""}
-          by&nbsp;
-          <Link
-            href="https://travislord.xyz/"
-            className="underline underline-offset-2"
-          >
-            Travis Lord
-          </Link>
-        </div>
-      </Layout>
+          <div className="flex items-center lg:py-2 ml-4">
+            <span className="text-dark/60 dark:text-light/60">Built with</span>
+            <span className="text-2xl px-1">❤️</span>
+            <span className="text-dark/60 dark:text-light/60">by</span>
+            <Link
+              href="https://eazidots.com"
+              className="underline underline-offset-2 text-primary dark:text-primaryDark hover:text-primary/80 dark:hover:text-primaryDark/80 transition-colors ml-1"
+            >
+              eazidots
+            </Link>
+          </div>
+        </Layout>
+      </div>
     </footer>
   );
 };

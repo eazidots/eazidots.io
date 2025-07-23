@@ -6,7 +6,6 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx}",
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
-    // Or if using `src` directory:
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   darkMode: "class",
@@ -16,64 +15,67 @@ module.exports = {
         mont: ["var(--font-mont)", ...fontFamily.sans],
       },
       colors: {
-        dark: "#1b1b1b",
-        light: "#f5f5f5",
-        primary: "#2545d0",
-        primaryDark: "#4377ee",
-        lightGreen: "#4377ee",
-        slideGreen: "#2439a9",
+        // Main theme colors
+        dark: "#1A1A1A",     // Rich black
+        light: "#F5F5F5",    // Off white for readability
+        primary: "#8B4513",  // Saddle brown - warm and professional
+        primaryDark: "#A0522D", // Sienna - lighter warm brown for dark mode
+        
+        // Coffee-inspired accents
+        coffee: {
+          light: "#C4A484",  // Cafe au lait
+          DEFAULT: "#6F4E37", // Coffee brown
+          dark: "#483C32",   // Taupe dark
+        },
+
+        // Sophisticated greys
+        grey: {
+          lightest: "#E5E5E5",
+          light: "#A9A9A9",
+          DEFAULT: "#808080",
+          dark: "#404040",
+          darkest: "#262626",
+        },
+
+        // Semantic colors
+        success: "#4A5D4C",  // Muted forest green
+        warning: "#B4846C",  // Rosy brown
+        error: "#8B4343",    // Deep burgundy
       },
       animation: {
         "spin-slow": "spin 8s linear infinite",
       },
-
       backgroundImage: {
         circularLight:
-          "repeating-radial-gradient(rgba(0,0,0,0.4) 2px,#f5f5f5 5px,#f5f5f5 100px)",
+          "repeating-radial-gradient(rgba(111,78,55,0.2) 2px,#F5F5F5 5px,#F5F5F5 100px)",
         circularDark:
-          "repeating-radial-gradient(rgba(255,255,255,0.5) 2px,#1b1b1b 8px,#1b1b1b 100px)",
+          "repeating-radial-gradient(rgba(196,164,132,0.2) 2px,#1A1A1A 8px,#1A1A1A 100px)",
         circularLightLg:
-          "repeating-radial-gradient(rgba(0,0,0,0.4) 2px,#f5f5f5 5px,#f5f5f5 80px)",
-
+          "repeating-radial-gradient(rgba(111,78,55,0.2) 2px,#F5F5F5 5px,#F5F5F5 80px)",
         circularDarkLg:
-          "repeating-radial-gradient(rgba(255,255,255,0.5) 2px,#1b1b1b 8px,#1b1b1b 80px)",
+          "repeating-radial-gradient(rgba(196,164,132,0.2) 2px,#1A1A1A 8px,#1A1A1A 80px)",
         circularLightMd:
-          "repeating-radial-gradient(rgba(0,0,0,0.4) 2px,#f5f5f5 5px,#f5f5f5 60px)",
-
+          "repeating-radial-gradient(rgba(111,78,55,0.2) 2px,#F5F5F5 5px,#F5F5F5 60px)",
         circularDarkMd:
-          "repeating-radial-gradient(rgba(255,255,255,0.5) 2px,#1b1b1b 8px,#1b1b1b 60px)",
-
+          "repeating-radial-gradient(rgba(196,164,132,0.2) 2px,#1A1A1A 8px,#1A1A1A 60px)",
         circularLightSm:
-          "repeating-radial-gradient(rgba(0,0,0,0.4) 2px,#f5f5f5 5px,#f5f5f5 40px)",
-
+          "repeating-radial-gradient(rgba(111,78,55,0.2) 2px,#F5F5F5 5px,#F5F5F5 40px)",
         circularDarkSm:
-          "repeating-radial-gradient(rgba(255,255,255,0.5) 2px,#1b1b1b 8px,#1b1b1b 40px)",
+          "repeating-radial-gradient(rgba(196,164,132,0.2) 2px,#1A1A1A 8px,#1A1A1A 40px)",
       },
       boxShadow: {
-        "3xl": "0 15px 15px 1px rgba(80,230,217, 0.4)",
+        "3xl": "0 15px 15px 1px rgba(111,78,55, 0.2)",
       },
     },
     screens: {
       "2xl": { max: "1535px" },
-      // => @media (max-width: 1535px) { ... }
-
       xl: { max: "1279px" },
-      // => @media (max-width: 1279px) { ... }
-
       lg: { max: "1023px" },
-      // => @media (max-width: 1023px) { ... }
-
       md: { max: "767px" },
-      // => @media (max-width: 767px) { ... }
-
       sm: { max: "639px" },
-      // => @media (max-width: 639px) { ... }
-
       xs: { max: "479px" },
-      // => @media (max-width: 479px) { ... }
     },
   },
-
   plugins: [
     function ({ addVariant }) {
       addVariant("child", "& > *");

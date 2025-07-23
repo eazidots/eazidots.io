@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Ensure body and html don't have conflicting backgrounds */
+html, body {
+  background: transparent;
+}
+
 /* Projects and Articles image background black*/
 img.h-auto.w-full {background: black !important;}
 img.w-full.max-h-80.object-cover {background: black !important;}
