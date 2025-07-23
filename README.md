@@ -50,18 +50,17 @@ A modern, professional portfolio and project showcase for Emmanuel Dotse Azilafu
     ```bash
     yarn dev
     ```
-5. Open [http://localhost:3000](http://localhost:3000) in your browser.
+5. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## 🧑‍💻 About Emmanuel Dotse Azilafu
-This site is the digital home of Emmanuel Dotse Azilafu, showcasing expertise in full-stack development (Next.js, FastAPI, Django, Rust), IT infrastructure, cloud solutions, and scientific computing. Explore the [About](./src/pages/about.js), [Projects](./src/pages/projects.js), and [Articles](./src/pages/articles.js) sections for more.
 
-## 🙏 Credits & License
-- Original template: [NexTemp by Travis Lord](https://github.com/lilxyzz/nextemp)
-- Customization and content: Emmanuel Dotse Azilafu
-- License: MIT (see LICENSE)
+#### 🙏 Thanks
+If you like this theme, don't forget to give it a ⭐.
 
-## 🤝 Contributing
-Contributions are welcome! Fork, push your changes, and submit a pull request.
+#### 🤝 Contributing
+Got enhancements you envision? Contributions are welcome! Fork the repo, push your changes, and submit a pull request. Let's make this theme better, together.
 
-## 👾 Issues
-For any challenges encountered, please report issues through the tracker.
+#### 👾 Issues
+For any challenges encountered, please feel free to report issues through our issue tracker.
+
+#### 📝 License
+This project is open source and available under the MIT License.
