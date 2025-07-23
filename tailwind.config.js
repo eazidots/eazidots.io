@@ -23,9 +23,11 @@ module.exports = {
         
         // Coffee-inspired accents
         coffee: {
-          light: "#C4A484",  // Cafe au lait
-          DEFAULT: "#6F4E37", // Coffee brown
-          dark: "#483C32",   // Taupe dark
+          lightest: "#E6D7C7", // Very light coffee
+          light: "#C4A484",    // Cafe au lait
+          DEFAULT: "#6F4E37",  // Coffee brown
+          dark: "#483C32",     // Taupe dark
+          darkest: "#2D251E",  // Very dark coffee
         },
 
         // Sophisticated greys
@@ -68,12 +70,12 @@ module.exports = {
       },
     },
     screens: {
-      'xs': '480px',
-      'sm': '640px',
-      'md': '768px',
-      'lg': '1024px',
-      'xl': '1280px',
-      '2xl': '1536px',
+      'xs': '375px',   // Extra small phones
+      'sm': '640px',   // Small devices (phones)
+      'md': '768px',   // Medium devices (tablets)
+      'lg': '1024px',  // Large devices (desktops)
+      'xl': '1280px',  // Extra large devices
+      '2xl': '1536px', // 2x extra large devices
     },
   },
   plugins: [

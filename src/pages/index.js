@@ -26,7 +26,7 @@ const TechStack = ({ icon, label }) => {
 const SkillTag = ({ children, delay = 0 }) => {
   return (
     <motion.span 
-      className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-primary/15 text-primary dark:bg-primaryDark/25 dark:text-light mr-1 mb-1 backdrop-blur-sm border border-primary/20 dark:border-primaryDark/30 sm:px-2 sm:py-1"
+      className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-primary/15 text-primary dark:bg-primaryDark/25 dark:text-light mr-1 mb-1 backdrop-blur-sm border border-primary/20 dark:border-primaryDark/30 sm:px-2 sm:py-0.5 sm:text-xs"
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       initial={{ opacity: 0, x: -20 }}
@@ -41,7 +41,7 @@ const SkillTag = ({ children, delay = 0 }) => {
 const FeaturedProject = ({ title, description, tech, link, delay = 0 }) => {
   return (
     <motion.div 
-      className="w-full p-4 rounded-xl border border-solid border-dark/10 dark:border-light/10 bg-light/40 dark:bg-dark/40 backdrop-blur-xl shadow-lg relative overflow-hidden sm:p-3"
+      className="w-full p-3 rounded-xl border border-solid border-dark/10 dark:border-light/10 bg-light/40 dark:bg-dark/40 backdrop-blur-xl shadow-lg relative overflow-hidden sm:p-2"
       whileHover={{ y: -5 }}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -54,11 +54,11 @@ const FeaturedProject = ({ title, description, tech, link, delay = 0 }) => {
       
       {/* Project Content */}
       <div className="relative z-10">
-        <h3 className="text-lg font-bold mb-2 text-dark dark:text-light sm:text-base">{title}</h3>
-        <p className="text-xs mb-3 text-dark/90 dark:text-light/90 sm:text-xs">{description}</p>
-        <div className="flex flex-wrap gap-1 mb-3">
+        <h3 className="text-lg font-bold mb-2 text-dark dark:text-light sm:text-base sm:mb-1">{title}</h3>
+        <p className="text-xs mb-2 text-dark/90 dark:text-light/90 sm:text-xs sm:mb-1 leading-relaxed">{description}</p>
+        <div className="flex flex-wrap gap-1 mb-2 sm:mb-1">
           {tech.map((t, index) => (
-            <span key={index} className="text-xs px-2 py-1 bg-primary/30 rounded-full text-primary dark:text-primaryDark font-medium backdrop-blur-sm border border-primary/20 dark:border-primaryDark/30 sm:text-xs">
+            <span key={index} className="text-xs px-2 py-0.5 bg-primary/30 rounded-full text-primary dark:text-primaryDark font-medium backdrop-blur-sm border border-primary/20 dark:border-primaryDark/30 sm:text-xs sm:px-1.5">
               {t}
             </span>
           ))}
@@ -93,16 +93,16 @@ export default function Home() {
         
         {/* Content */}
         <div className="relative z-10 w-full">
-          <Layout className="!pt-6 md:!pt-4 sm:!pt-2">
-            <div className="flex w-full items-center justify-center pt-4 pb-6 sm:pt-2 sm:pb-3">
-              <div className="flex w-full flex-col items-center justify-center text-center max-w-4xl mx-auto px-4 sm:px-3">
+          <Layout className="!pt-4 md:!pt-3 sm:!pt-2">
+            <div className="flex w-full items-center justify-center pt-2 pb-4 sm:pt-1 sm:pb-2">
+              <div className="flex w-full flex-col items-center justify-center text-center max-w-4xl mx-auto">
                 <AnimatedText
                   text="Emmanuel Dotse Azilafu"
                   className="!text-center !text-5xl xl:!text-4xl lg:!text-3xl md:!text-2xl sm:!text-xl xs:!text-lg"
                 />
                 
                 <motion.h2 
-                  className="text-lg font-medium text-primary dark:text-primaryDark mt-3 mb-2 text-center md:text-base sm:text-sm xs:text-xs"
+                  className="text-lg font-medium text-primary dark:text-primaryDark mt-2 mb-2 text-center md:text-base sm:text-sm xs:text-xs"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
@@ -111,7 +111,7 @@ export default function Home() {
                 </motion.h2>
 
                 <motion.p 
-                  className="my-3 text-sm text-dark/90 dark:text-light/90 max-w-2xl mx-auto text-center font-medium md:text-sm sm:text-xs xs:text-xs leading-relaxed"
+                  className="my-2 text-sm text-dark/90 dark:text-light/90 max-w-2xl mx-auto text-center font-medium md:text-sm sm:text-xs xs:text-xs leading-relaxed sm:my-1"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
@@ -119,16 +119,16 @@ export default function Home() {
                   Crafting robust full-stack solutions with modern technologies while managing enterprise IT infrastructure and cloud services.
                 </motion.p>
 
-                <div className="w-full mt-4 mb-6 sm:mt-3 sm:mb-4">
+                <div className="w-full mt-3 mb-4 sm:mt-2 sm:mb-3">
                   <motion.h3 
-                    className="text-base font-semibold mb-2 text-center md:text-sm sm:text-xs xs:text-xs"
+                    className="text-base font-semibold mb-2 text-center md:text-sm sm:text-xs xs:text-xs sm:mb-1"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 }}
                   >
                     Tech Stack & Expertise:
                   </motion.h3>
-                  <div className="flex flex-wrap justify-center gap-1 sm:gap-1">
+                  <div className="flex flex-wrap justify-center gap-1 sm:gap-0.5">
                     <SkillTag delay={1}>Next.js</SkillTag>
                     <SkillTag delay={2}>FastAPI</SkillTag>
                     <SkillTag delay={3}>Django</SkillTag>
@@ -163,13 +163,13 @@ export default function Home() {
 
             {/* Featured Projects Section - Mobile Optimized */}
             <motion.div 
-              className="w-full mt-8 sm:mt-4"
+              className="w-full mt-6 sm:mt-3"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
             >
-              <h2 className="font-bold text-xl mb-4 text-center sm:text-lg xs:text-base">Featured Projects</h2>
-              <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-4 sm:gap-3 px-4 sm:px-2">
+              <h2 className="font-bold text-xl mb-3 text-center sm:text-lg xs:text-base sm:mb-2">Featured Projects</h2>
+              <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-3 sm:gap-2">
                 <FeaturedProject 
                   title="PEA Protein Analysis"
                   description="Advanced protein analysis system with complex computational processing and modern web interface."
@@ -195,7 +195,7 @@ export default function Home() {
             </motion.div>
 
             <motion.div 
-              className="w-full mt-8 sm:mt-4 text-center pb-6 sm:pb-3"
+              className="w-full mt-6 sm:mt-3 text-center pb-4 sm:pb-2"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}

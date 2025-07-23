@@ -17,16 +17,14 @@ const Footer = () => {
       
       {/* Footer Content */}
       <div className="relative z-10">
-        <Layout className="py-8 flex items-center justify-center lg:flex-col lg:py-6">
-          <span className="text-dark/80 dark:text-light/80">&copy; {new Date().getFullYear()} Emmanuel Dotse Azilafu</span>
+        <Layout className="py-6 flex items-center justify-center lg:flex-col lg:py-4 sm:py-3">
+          <span className="text-dark/80 dark:text-light/80 sm:text-sm">&copy; {new Date().getFullYear()} Emmanuel Dotse Azilafu</span>
 
-          <div className="flex items-center lg:py-2 ml-4">
-            <span className="text-dark/60 dark:text-light/60">Built with</span>
-            <span className="text-2xl px-1">❤️</span>
-            <span className="text-dark/60 dark:text-light/60">by</span>
+          <div className="flex items-center lg:py-2 ml-4 lg:ml-0 sm:mt-2 sm:ml-0">
+            <span className="text-dark/60 dark:text-light/60 sm:text-sm">Developed by</span>
             <Link
               href="https://eazidots.com"
-              className="underline underline-offset-2 text-primary dark:text-primaryDark hover:text-primary/80 dark:hover:text-primaryDark/80 transition-colors ml-1"
+              className="underline underline-offset-2 text-primary dark:text-primaryDark hover:text-primary/80 dark:hover:text-primaryDark/80 transition-colors ml-1 sm:text-sm"
             >
               eazidots
             </Link>

@@ -15,7 +15,7 @@ const ArticleCard = ({ title, date, summary, link, category }) => {
       whileInView={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeInOut" }}
       viewport={{ once: true }}
-      className="relative flex flex-col w-full p-5 sm:p-3 rounded-2xl border border-solid border-dark/10 dark:border-light/10 bg-light/40 dark:bg-dark/40 backdrop-blur-xl overflow-hidden"
+      className="relative flex flex-col w-full p-3 sm:p-2 rounded-2xl border border-solid border-dark/10 dark:border-light/10 bg-light/40 dark:bg-dark/40 backdrop-blur-xl overflow-hidden"
     >
       {/* Article Card Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-light/30 via-coffee-light/15 to-coffee-dark/30 dark:from-dark/30 dark:via-coffee-dark/10 dark:to-coffee-light/30 z-0"></div>
@@ -24,18 +24,18 @@ const ArticleCard = ({ title, date, summary, link, category }) => {
       
       {/* Article Content */}
       <div className="relative z-10">
-        <div className="flex justify-between items-center mb-3">
+        <div className="flex justify-between items-center mb-2 sm:mb-1">
           <span className="text-coffee-dark dark:text-coffee-light font-medium text-sm sm:text-xs">{category}</span>
           <span className="text-dark/60 dark:text-light/60 text-xs">{date}</span>
         </div>
 
         <Link href={link} className="hover:underline underline-offset-2">
-          <h2 className="text-lg font-bold mb-3 hover:text-coffee-dark dark:hover:text-coffee-light transition-colors sm:text-base">
+          <h2 className="text-lg font-bold mb-2 hover:text-coffee-dark dark:hover:text-coffee-light transition-colors sm:text-base sm:mb-1">
             {title}
           </h2>
         </Link>
 
-        <p className="text-dark/90 dark:text-light/90 text-sm leading-relaxed mb-4 sm:text-xs">
+        <p className="text-dark/90 dark:text-light/90 text-sm leading-relaxed mb-3 sm:text-xs sm:mb-2">
           {summary}
         </p>
 
@@ -57,7 +57,7 @@ const FeaturedArticle = ({ title, date, summary, link, category }) => {
       whileInView={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeInOut" }}
       viewport={{ once: true }}
-      className="relative w-full p-6 md:p-4 sm:p-3 rounded-2xl border border-solid border-dark/10 dark:border-light/10 bg-light/40 dark:bg-dark/40 backdrop-blur-xl overflow-hidden"
+      className="relative w-full p-4 md:p-3 sm:p-2 rounded-2xl border border-solid border-dark/10 dark:border-light/10 bg-light/40 dark:bg-dark/40 backdrop-blur-xl overflow-hidden"
     >
       {/* Featured Article Card Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-light/30 via-coffee-light/15 to-coffee-dark/30 dark:from-dark/30 dark:via-coffee-dark/10 dark:to-coffee-light/30 z-0"></div>
@@ -66,22 +66,22 @@ const FeaturedArticle = ({ title, date, summary, link, category }) => {
       
       {/* Featured Article Content */}
       <div className="relative z-10">
-        <div className="flex justify-between items-center mb-4">
-          <span className="bg-coffee-dark dark:bg-coffee-light text-light dark:text-dark px-3 py-1 rounded-full text-sm font-medium">Featured</span>
-          <span className="text-dark/60 dark:text-light/60 text-sm">{date}</span>
+        <div className="flex justify-between items-center mb-3 sm:mb-2">
+          <span className="bg-coffee-dark dark:bg-coffee-light text-light dark:text-dark px-3 py-1 rounded-full text-sm font-medium sm:px-2 sm:text-xs">Featured</span>
+          <span className="text-dark/60 dark:text-light/60 text-sm sm:text-xs">{date}</span>
         </div>
 
         <Link href={link} className="hover:underline underline-offset-2">
-          <h2 className="text-2xl md:text-xl sm:text-lg font-bold mb-3 hover:text-coffee-dark dark:hover:text-coffee-light transition-colors">
+          <h2 className="text-2xl md:text-xl sm:text-lg font-bold mb-2 hover:text-coffee-dark dark:hover:text-coffee-light transition-colors sm:mb-1">
             {title}
           </h2>
         </Link>
 
-        <div className="flex justify-between items-center mb-3">
+        <div className="flex justify-between items-center mb-2 sm:mb-1">
           <span className="text-coffee-dark dark:text-coffee-light font-medium text-sm sm:text-xs">{category}</span>
         </div>
 
-        <p className="text-dark/90 dark:text-light/90 text-base md:text-sm sm:text-xs leading-relaxed mb-4">
+        <p className="text-dark/90 dark:text-light/90 text-base md:text-sm sm:text-xs leading-relaxed mb-3 sm:mb-2">
           {summary}
         </p>
 
@@ -107,7 +107,7 @@ export default function Articles() {
         />
       </Head>
       <TransitionEffect />
-      <main className="w-full mb-8 flex flex-col items-center justify-center dark:text-light overflow-hidden relative px-4 sm:px-3">
+      <main className="w-full mb-8 flex flex-col items-center justify-center dark:text-light overflow-hidden relative">
         {/* Coffee-Brown Theme Gradient Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-coffee-lightest via-coffee-light/40 to-coffee-dark dark:from-coffee-darkest dark:via-coffee-dark/35 dark:to-coffee-lightest z-0"></div>
         <div className="absolute inset-0 bg-gradient-to-tl from-transparent via-coffee-light/15 to-transparent dark:from-transparent dark:via-coffee-dark/15 dark:to-transparent z-0"></div>
@@ -115,16 +115,16 @@ export default function Articles() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-coffee-light/8 to-transparent dark:from-transparent dark:via-coffee-dark/8 dark:to-transparent z-0"></div>
         
         {/* Content */}
-        <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col items-center justify-center px-4 sm:px-3">
-          <Layout className="pt-6 md:pt-4 sm:pt-2">
+        <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col items-center justify-center">
+          <Layout className="pt-4 md:pt-3 sm:pt-2">
             <AnimatedText
               text="Sharing Knowledge & Experience"
-              className="mb-8 !text-4xl !leading-tight lg:!text-3xl sm:mb-4 sm:!text-2xl xs:!text-xl text-center"
+              className="mb-6 !text-4xl !leading-tight lg:!text-3xl sm:mb-3 sm:!text-2xl xs:!text-xl text-center"
             />
             
             {/* Articles Grid Container */}
             <div className="flex w-full items-center justify-center">
-              <div className="flex w-full flex-col items-center justify-center max-w-6xl space-y-6 sm:space-y-4">
+              <div className="flex w-full flex-col items-center justify-center max-w-6xl space-y-4 sm:space-y-3">
                 
                 {/* Featured Article - Full Width */}
                 <div className="w-full">
@@ -138,7 +138,7 @@ export default function Articles() {
                 </div>
 
                 {/* Regular Articles Grid */}
-                <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 md:gap-4 sm:gap-3">
+                <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 md:gap-3 sm:gap-2">
                   <ArticleCard
                     title="Building Scientific Computing Solutions with Rust and Next.js"
                     date="May 2024"
@@ -157,7 +157,7 @@ export default function Articles() {
                 </div>
 
                 {/* Second Row of Regular Articles */}
-                <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 md:gap-4 sm:gap-3">
+                <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 md:gap-3 sm:gap-2">
                   <ArticleCard
                     title="Optimizing Cloud Infrastructure: Lessons from the Field"
                     date="January 2024"
@@ -177,12 +177,12 @@ export default function Articles() {
 
                 {/* CMS Notice */}
                 <motion.div 
-                  className="mt-8 text-center w-full sm:mt-6"
+                  className="mt-6 text-center w-full sm:mt-4"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.3 }}
                 >
-                  <div className="bg-light/40 dark:bg-dark/40 backdrop-blur-xl rounded-2xl p-4 sm:p-3 border border-coffee-light/20 dark:border-coffee-dark/20">
+                  <div className="bg-light/40 dark:bg-dark/40 backdrop-blur-xl rounded-2xl p-3 sm:p-2 border border-coffee-light/20 dark:border-coffee-dark/20">
                     <p className="text-dark/90 dark:text-light/90 text-sm sm:text-xs">
                       📝 New articles are managed through Sanity.io CMS. Check back regularly for updates on technology, development insights, and career journey stories!
                     </p>
