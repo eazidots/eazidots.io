@@ -7,6 +7,7 @@ import { useRef } from "react";
 import { motion, useMotionValue } from "framer-motion";
 import TransitionEffect from "@/components/TransitionEffect";
 import { HireMe2 } from "@/components/HireMe2";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const FeaturedProject = ({
   type,
@@ -20,7 +21,7 @@ const FeaturedProject = ({
   return (
     <motion.article
       className="relative w-full rounded-2xl border border-solid border-dark/10 dark:border-light/10 
-        bg-light/40 dark:bg-dark/40 backdrop-blur-xl p-8 shadow-lg overflow-hidden"
+        bg-light/40 dark:bg-dark/40 backdrop-blur-xl p-6 sm:p-4 shadow-lg overflow-hidden"
       whileHover={{ y: -5 }}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -33,31 +34,31 @@ const FeaturedProject = ({
       
       {/* Project Content */}
       <div className="relative z-10">
-        <span className="text-xl font-medium text-dark dark:text-light">
+        <span className="text-lg font-medium text-dark dark:text-light sm:text-base">
           {type}
         </span>
-        <div className="flex flex-wrap gap-2 my-4">
+        <div className="flex flex-wrap gap-1 my-3">
           {tools.split('|').map((tool, index) => (
-            <span key={index} className="text-sm px-3 py-1 bg-dark/25 dark:bg-light/25 rounded-full text-dark dark:text-light font-medium backdrop-blur-sm border border-dark/20 dark:border-light/30">
+            <span key={index} className="text-xs px-2 py-1 bg-dark/25 dark:bg-light/25 rounded-full text-dark dark:text-light font-medium backdrop-blur-sm border border-dark/20 dark:border-light/30">
               {tool.trim()}
             </span>
           ))}
         </div>
         <Link href={link} className="underline-offset-2 hover:underline">
-          <h2 className="my-4 w-full text-left text-4xl font-bold lg:text-3xl xs:text-2xl text-dark dark:text-light">
+          <h2 className="my-3 w-full text-left text-2xl font-bold lg:text-xl sm:text-lg text-dark dark:text-light">
             {title}
           </h2>
         </Link>
-        <p className="my-4 rounded-md font-medium text-dark/90 dark:text-light/90 sm:text-sm leading-relaxed">
+        <p className="my-3 rounded-md font-medium text-dark/90 dark:text-light/90 text-sm sm:text-xs leading-relaxed">
           {summary}
         </p>
-        <div className="mt-6 flex items-center justify-between w-full">
-          <div className="flex items-center">
+        <div className="mt-4 flex items-center justify-between w-full sm:flex-col sm:items-start sm:gap-3">
+          <div className="flex items-center sm:w-full">
             {github && (
               <Link
                 href={github}
                 target="_blank"
-                className="w-10 mr-4"
+                className="w-8 mr-3 sm:w-6 sm:mr-2"
                 aria-label="github link"
               >
                 <GithubIcon />
@@ -65,16 +66,16 @@ const FeaturedProject = ({
             )}
             <Link
               href={link}
-              className="rounded-lg bg-dark/90 dark:bg-light/90 backdrop-blur-xl p-2 px-6 text-lg font-semibold
+              className="rounded-lg bg-dark/90 dark:bg-light/90 backdrop-blur-xl p-2 px-4 text-sm font-semibold
                 capitalize text-light dark:text-dark hover:bg-dark/70 dark:hover:bg-light/70 
                 border-2 border-solid border-dark/20 dark:border-light/20 transition-all duration-300
-                md:p-2 md:px-4 md:text-base"
+                md:p-2 md:px-3 md:text-xs sm:text-xs sm:px-3 sm:py-2"
               aria-label="Project link"
             >
               View Project
             </Link>
           </div>
-          <span className="text-dark/80 dark:text-light/80 font-medium">
+          <span className="text-dark/80 dark:text-light/80 font-medium text-sm sm:text-xs">
             {status}
           </span>
         </div>
@@ -87,7 +88,7 @@ const Project = ({ title, type, link, github, tools, status }) => {
   return (
     <motion.article
       className="relative w-full flex flex-col items-center justify-center rounded-2xl 
-      border border-solid border-dark/10 dark:border-light/10 bg-light/40 dark:bg-dark/40 backdrop-blur-xl p-6 shadow-lg overflow-hidden"
+      border border-solid border-dark/10 dark:border-light/10 bg-light/40 dark:bg-dark/40 backdrop-blur-xl p-4 sm:p-3 shadow-lg overflow-hidden"
       whileHover={{ y: -5 }}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -100,29 +101,29 @@ const Project = ({ title, type, link, github, tools, status }) => {
       
       {/* Project Content */}
       <div className="relative z-10 w-full">
-        <div className="mt-4 flex w-full flex-col items-start justify-between">
-          <span className="text-xl font-medium text-dark dark:text-light lg:text-lg md:text-base">
+        <div className="mt-3 flex w-full flex-col items-start justify-between">
+          <span className="text-lg font-medium text-dark dark:text-light lg:text-base md:text-sm sm:text-sm">
             {type}
           </span>
-          <div className="flex flex-wrap gap-2 my-4">
+          <div className="flex flex-wrap gap-1 my-3">
             {tools.split('|').map((tool, index) => (
-              <span key={index} className="text-sm px-3 py-1 bg-dark/25 dark:bg-light/25 rounded-full text-dark dark:text-light font-medium backdrop-blur-sm border border-dark/20 dark:border-light/30">
+              <span key={index} className="text-xs px-2 py-1 bg-dark/25 dark:bg-light/25 rounded-full text-dark dark:text-light font-medium backdrop-blur-sm border border-dark/20 dark:border-light/30">
                 {tool.trim()}
               </span>
             ))}
           </div>
           <Link href={link} className="underline-offset-2 hover:underline">
-            <h2 className="my-4 w-full text-left text-3xl font-bold lg:text-2xl text-dark dark:text-light">
+            <h2 className="my-3 w-full text-left text-xl font-bold lg:text-lg sm:text-base text-dark dark:text-light">
               {title}
             </h2>
           </Link>
-          <div className="flex w-full items-center justify-between">
-            <div className="flex items-center">
+          <div className="flex w-full items-center justify-between sm:flex-col sm:items-start sm:gap-3">
+            <div className="flex items-center sm:w-full">
               {github && (
                 <Link
                   href={github}
                   target="_blank"
-                  className="w-8 mr-4"
+                  className="w-6 mr-3 sm:w-5 sm:mr-2"
                   aria-label="github link"
                 >
                   <GithubIcon />
@@ -130,16 +131,16 @@ const Project = ({ title, type, link, github, tools, status }) => {
               )}
               <Link
                 href={link}
-                className="rounded-lg bg-dark/90 dark:bg-light/90 backdrop-blur-xl mt-2 px-6 py-2 text-lg font-semibold
+                className="rounded-lg bg-dark/90 dark:bg-light/90 backdrop-blur-xl mt-2 px-4 py-2 text-sm font-semibold
                   capitalize text-light dark:text-dark hover:bg-dark/70 dark:hover:bg-light/70
                   border-2 border-solid border-dark/20 dark:border-light/20 transition-all duration-300
-                  md:p-2 md:px-4 md:text-base"
+                  md:p-2 md:px-3 md:text-xs sm:text-xs sm:px-3 sm:py-2"
                 aria-label={title}
               >
                 View Project
               </Link>
             </div>
-            <span className="text-dark/80 dark:text-light/80 font-medium">
+            <span className="text-dark/80 dark:text-light/80 font-medium text-sm sm:text-xs">
               {status}
             </span>
           </div>
@@ -170,41 +171,45 @@ export default function Projects() {
         
         {/* Content */}
         <div className="relative z-10 w-full">
-          <Layout className="pt-16">
-            <AnimatedText
-              text="Innovation Through Code"
-              className="mb-16 !text-7xl !leading-tight lg:!text-6xl sm:mb-8 sm:!text-5xl xs:!text-4xl text-center"
-            />
-
+          <Layout className="pt-6 md:pt-4 sm:pt-2">
             <div className="flex w-full items-center justify-center">
-              <div className="flex w-full flex-col items-center justify-center max-w-6xl">
+              <div className="flex w-full flex-col items-center justify-center max-w-6xl mx-auto px-4 sm:px-3">
+                <AnimatedText
+                  text="Innovation Through Code"
+                  className="mb-8 !text-4xl !leading-tight lg:!text-3xl sm:mb-4 sm:!text-2xl xs:!text-xl text-center"
+                />
+                
+                {/* Scientific Computing Projects Section */}
                 <motion.div 
-                  className="w-full mb-16"
+                  className="w-full mb-8 sm:mb-6"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <h2 className="font-bold text-4xl mb-8 w-full text-center text-light dark:text-dark">
+                  <h2 className="font-bold text-2xl mb-6 w-full text-center text-dark dark:text-light lg:text-xl sm:text-lg">
                     Scientific Computing Projects
                   </h2>
-                  <FeaturedProject
-                    type="Research & Development"
-                    tools="Rust | Next.js | FastAPI | Django"
-                    title="PEA Protein Analysis System"
-                    summary="Advanced scientific computing platform for protein analysis, featuring complex computational processing in Rust, modern web interface with Next.js, and robust data management with Django."
-                    link="/projects/pea-protein-analysis"
-                    github="https://github.com/yourusername/pea-analysis"
-                    status="In Progress (May 2025)"
-                  />
+                  <div className="px-4 sm:px-3">
+                    <FeaturedProject
+                      type="Research & Development"
+                      tools="Rust | Next.js | FastAPI | Django"
+                      title="PEA Protein Analysis System"
+                      summary="Advanced scientific computing platform for protein analysis, featuring complex computational processing in Rust, modern web interface with Next.js, and robust data management with Django."
+                      link="/projects/pea-protein-analysis"
+                      github="https://github.com/yourusername/pea-analysis"
+                      status="In Progress (May 2025)"
+                    />
+                  </div>
                 </motion.div>
 
+                {/* Data Analytics Projects */}
                 <motion.div 
-                  className="w-full mb-16"
+                  className="w-full mb-8 sm:mb-6"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="grid grid-cols-1 gap-6 px-4 sm:px-3 sm:gap-4">
                     <Project
                       type="Data Analytics"
                       tools="Next.js | FastAPI | Django"
@@ -213,7 +218,6 @@ export default function Projects() {
                       github="https://github.com/yourusername/supply-chain"
                       status="Upcoming (August 2025)"
                     />
-
                     <Project
                       type="Research Tools"
                       tools="Python | Django | FastAPI | Next.js"
@@ -225,69 +229,70 @@ export default function Projects() {
                   </div>
                 </motion.div>
 
+                {/* Infrastructure & Systems Section */}
                 <motion.div 
-                  className="w-full mb-16"
+                  className="w-full mb-8 sm:mb-6"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.4 }}
                 >
-                  <h2 className="font-bold text-4xl mb-8 w-full text-center text-light dark:text-dark">
+                  <h2 className="font-bold text-2xl mb-6 w-full text-center text-dark dark:text-light lg:text-xl sm:text-lg">
                     Infrastructure & Systems
                   </h2>
-                  <FeaturedProject
-                    type="Enterprise Systems"
-                    tools="Python | Django | GCP | AWS"
-                    title="HRM System Deployment"
-                    summary="Comprehensive HR Management System deployed on Google Cloud Platform, featuring secure user management, automated workflows, and integration with existing enterprise systems."
-                    link="/projects/hrm-system"
-                    status="Completed (March 2024)"
-                  />
+                  <div className="px-4 sm:px-3">
+                    <FeaturedProject
+                      type="Enterprise Systems"
+                      tools="Python | Django | GCP | AWS"
+                      title="HRM System Deployment"
+                      summary="Comprehensive HR Management System deployed on Google Cloud Platform, featuring secure user management, automated workflows, and integration with existing enterprise systems."
+                      link="/projects/hrm-system"
+                      status="Completed (March 2024)"
+                    />
+                  </div>
                 </motion.div>
 
+                {/* Automation Scripts & Tools Section */}
                 <motion.div 
-                  className="w-full"
+                  className="w-full pb-6 sm:pb-3"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.6 }}
                 >
-                  <h2 className="font-bold text-4xl mb-8 w-full text-center text-light dark:text-dark">
+                  <h2 className="font-bold text-2xl mb-6 w-full text-center text-dark dark:text-light lg:text-xl sm:text-lg">
                     Automation Scripts & Tools
                   </h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div className="bg-light/40 dark:bg-dark/40 backdrop-blur-xl p-8 rounded-2xl border border-dark/10 dark:border-light/10 relative overflow-hidden">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 px-4 sm:px-3 sm:gap-4">
+                    <div className="bg-light/40 dark:bg-dark/40 backdrop-blur-xl p-4 sm:p-3 rounded-2xl border border-dark/10 dark:border-light/10 relative overflow-hidden">
                       {/* Card Gradient Background */}
                       <div className="absolute inset-0 bg-gradient-to-br from-light/30 via-dark/15 to-dark/30 dark:from-dark/30 dark:via-light/10 dark:to-light/30 z-0"></div>
                       <div className="absolute inset-0 bg-gradient-to-tl from-transparent via-dark/4 to-transparent dark:from-transparent dark:via-light/4 dark:to-transparent z-0"></div>
-                      
                       {/* Card Content */}
                       <div className="relative z-10">
-                        <h3 className="text-2xl font-bold mb-4 text-dark dark:text-light">Network Management</h3>
-                        <p className="text-dark/90 dark:text-light/90 mb-6 leading-relaxed">
+                        <h3 className="text-lg font-bold mb-3 text-dark dark:text-light md:text-base sm:text-sm">Network Management</h3>
+                        <p className="text-dark/90 dark:text-light/90 mb-4 leading-relaxed text-sm sm:text-xs">
                           Collection of scripts for automated network monitoring, configuration management, and security auditing.
                         </p>
                         <Link
                           href="https://github.com/yourusername/network-scripts"
-                          className="text-dark/80 dark:text-light/80 hover:underline transition-colors"
+                          className="text-dark/80 dark:text-light/80 hover:underline transition-colors text-xs"
                         >
                           View Repository →
                         </Link>
                       </div>
                     </div>
-
-                    <div className="bg-light/40 dark:bg-dark/40 backdrop-blur-xl p-8 rounded-2xl border border-dark/10 dark:border-light/10 relative overflow-hidden">
+                    <div className="bg-light/40 dark:bg-dark/40 backdrop-blur-xl p-4 sm:p-3 rounded-2xl border border-dark/10 dark:border-light/10 relative overflow-hidden">
                       {/* Card Gradient Background */}
                       <div className="absolute inset-0 bg-gradient-to-br from-light/30 via-dark/15 to-dark/30 dark:from-dark/30 dark:via-light/10 dark:to-light/30 z-0"></div>
                       <div className="absolute inset-0 bg-gradient-to-tl from-transparent via-dark/4 to-transparent dark:from-transparent dark:via-light/4 dark:to-transparent z-0"></div>
-                      
                       {/* Card Content */}
                       <div className="relative z-10">
-                        <h3 className="text-2xl font-bold mb-4 text-dark dark:text-light">System Administration</h3>
-                        <p className="text-dark/90 dark:text-light/90 mb-6 leading-relaxed">
+                        <h3 className="text-lg font-bold mb-3 text-dark dark:text-light md:text-base sm:text-sm">System Administration</h3>
+                        <p className="text-dark/90 dark:text-light/90 mb-4 leading-relaxed text-sm sm:text-xs">
                           Automation tools for system maintenance, backup management, and security compliance checks.
                         </p>
                         <Link
                           href="https://github.com/yourusername/sysadmin-tools"
-                          className="text-dark/80 dark:text-light/80 hover:underline transition-colors"
+                          className="text-dark/80 dark:text-light/80 hover:underline transition-colors text-xs"
                         >
                           View Repository →
                         </Link>
@@ -300,6 +305,7 @@ export default function Projects() {
           </Layout>
         </div>
         <HireMe2 />
+        <ScrollToTop />
       </main>
     </>
   );

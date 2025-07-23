@@ -18,7 +18,7 @@ const CustomLink = ({ href, title, className = "" }) => {
   return (
     <Link
       href={href}
-      className={`${className} relative group font-medium transition-colors duration-300 lg:text-light lg:dark:text-dark`}
+      className={`${className} relative group font-medium transition-colors duration-300`}
     >
       {title}
       <span
@@ -27,7 +27,7 @@ const CustomLink = ({ href, title, className = "" }) => {
               group-hover:w-full transition-[width] ease duration-300 dark:bg-primaryDark
               ${
                 router.asPath === href ? "w-full" : " w-0"
-              } lg:bg-primary lg:dark:bg-primaryDark
+              }
               `}
       >
         &nbsp;
@@ -46,7 +46,7 @@ const CustomMobileLink = ({ href, title, className = "", toggle }) => {
 
   return (
     <button
-      className={`${className} relative group font-medium transition-colors duration-300 lg:text-light lg:dark:text-dark`}
+      className={`${className} relative group font-medium transition-colors duration-300`}
       onClick={handleClick}
     >
       {title}
@@ -56,7 +56,7 @@ const CustomMobileLink = ({ href, title, className = "", toggle }) => {
               group-hover:w-full transition-[width] ease duration-300 dark:bg-primaryDark
               ${
                 router.asPath === href ? "w-full" : " w-0"
-              } lg:bg-primary lg:dark:bg-primaryDark
+              }
               `}
       >
         &nbsp;
@@ -90,6 +90,33 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${window.scrollY}px`;
+      document.body.style.width = '100%';
+    } else {
+      const scrollY = document.body.style.top;
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      }
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+    };
+  }, [isOpen]);
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
@@ -102,11 +129,11 @@ const Navbar = () => {
 
   return (
     <header
-      className={`sticky top-0 w-full flex items-center justify-between px-32 pt-8 pb-6 font-medium dark:text-light
-    lg:px-16 z-50 md:px-12 sm:px-8 
+      className={`sticky top-0 w-full flex items-center justify-between px-6 sm:px-4 pt-6 pb-4 font-medium dark:text-light
+    lg:px-10 z-50 md:px-6 sm:px-2 
     relative transition-all duration-300 ease-in-out
     ${isScrolled 
-      ? 'backdrop-blur-xl bg-light/20 dark:bg-dark/20 border-b border-light/10 dark:border-dark/10' 
+      ? 'backdrop-blur-xl bg-light/80 dark:bg-dark/80 border-b border-light/20 dark:border-dark/20 shadow-sm' 
       : 'bg-transparent'
     }
     `}
@@ -118,191 +145,171 @@ const Navbar = () => {
       
       {/* Navbar Content */}
       <div className="relative z-10 w-full flex items-center justify-between">
-      {/* Logo - Left Side */}
-      <div className="flex items-center">
-        <TextLogo />
-      </div>
+        {/* Logo - Left Side */}
+        <div className="flex items-center min-w-[100px]">
+          <TextLogo />
+        </div>
 
-      {/* Mobile Menu Button */}
-      <button
-        type="button"
-        className="flex-col items-center justify-center hidden lg:flex z-50"
-        aria-controls="mobile-menu"
-        aria-expanded={isOpen}
-        onClick={handleClick}
-      >
-        <span className="sr-only">Open main menu</span>
-        <span
-          className={`bg-primary dark:bg-primaryDark block h-0.5 w-6 rounded-sm transition-all duration-300 ease-out ${
-            isOpen ? "rotate-45 translate-y-1" : "-translate-y-0.5"
-          }`}
-        ></span>
-        <span
-          className={`bg-primary dark:bg-primaryDark block h-0.5 w-6 rounded-sm transition-all duration-300 ease-out ${
-            isOpen ? "opacity-0" : "opacity-100"
-          } my-0.5`}
-        ></span>
-        <span
-          className={`bg-primary dark:bg-primaryDark block h-0.5 w-6 rounded-sm transition-all duration-300 ease-out ${
-            isOpen ? "-rotate-45 -translate-y-1" : "translate-y-0.5"
-          }`}
-        ></span>
-      </button>
-
-      {/* Desktop Navigation - Centered */}
-      <div className="flex items-center justify-center flex-1 lg:hidden">
-        <nav className="flex items-center justify-center space-x-8">
-          <CustomLink href="/" title="Home" />
-          <CustomLink href="/about" title="About" />
-          <CustomLink href="/projects" title="Projects" />
-          <CustomLink href="/articles" title="Articles" />
-          <CustomLink href="/contact" title="Contact" />
-        </nav>
-      </div>
-
-      {/* Social Links & Theme Switcher - Right Side */}
-      <div className="flex items-center justify-center space-x-4 lg:hidden">
-        <motion.a
-          target={"_blank"}
-          className="w-6 h-6 flex items-center justify-center rounded-full bg-grey-light/20 dark:bg-grey-dark/20 hover:bg-primary/20 dark:hover:bg-primaryDark/20 transition-colors duration-300"
-          href="https://github.com/eazidots"
-          whileHover={{ y: -2, scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          aria-label="Checkout my GitHub profile"
-        >
-          <GithubIcon />
-        </motion.a>
-
-        <motion.a
-          target={"_blank"}
-          className="w-6 h-6 flex items-center justify-center rounded-full bg-grey-light/20 dark:bg-grey-dark/20 hover:bg-primary/20 dark:hover:bg-primaryDark/20 transition-colors duration-300"
-          href="https://linkedin.com/in/emmanuel-dotse-azilafu"
-          whileHover={{ y: -2, scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          aria-label="Checkout my LinkedIn profile"
-        >
-          <LinkedInIcon />
-        </motion.a>
-
-        <motion.a
-          target={"_blank"}
-          className="w-6 h-6 flex items-center justify-center rounded-full bg-grey-light/20 dark:bg-grey-dark/20 hover:bg-primary/20 dark:hover:bg-primaryDark/20 transition-colors duration-300"
-          href="mailto:dotse@eazidots.com"
-          whileHover={{ y: -2, scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          aria-label="Send me an email"
-        >
-          <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-          </svg>
-        </motion.a>
-
+        {/* Mobile Menu Button - visible ONLY on screens smaller than lg (< 1024px) */}
         <button
-          onClick={() => setMode(mode === "light" ? "dark" : "light")}
-          className={`w-6 h-6 ease flex items-center justify-center rounded-full p-1 transition-all duration-300
-          ${mode === "light" ? "bg-primary text-light" : "bg-primaryDark text-light"}
-          hover:scale-110
-          `}
-          aria-label="theme-switcher"
+          type="button"
+          className="flex flex-col items-center justify-center lg:hidden z-50 ml-2 sm:ml-0"
+          aria-controls="mobile-menu"
+          aria-expanded={isOpen}
+          onClick={handleClick}
         >
-          {mode === "light" ? (
-            <SunIcon className={"fill-light"} />
-          ) : (
-            <MoonIcon className={"fill-light"} />
-          )}
+          <span className="sr-only">Open main menu</span>
+          <span
+            className={`bg-primary dark:bg-primaryDark block h-0.5 w-7 sm:w-6 rounded-sm transition-all duration-300 ease-out ${
+              isOpen ? "rotate-45 translate-y-1" : "-translate-y-0.5"
+            }`}
+          ></span>
+          <span
+            className={`bg-primary dark:bg-primaryDark block h-0.5 w-7 sm:w-6 rounded-sm transition-all duration-300 ease-out ${
+              isOpen ? "opacity-0" : "opacity-100"
+            } my-0.5`}
+          ></span>
+          <span
+            className={`bg-primary dark:bg-primaryDark block h-0.5 w-7 sm:w-6 rounded-sm transition-all duration-300 ease-out ${
+              isOpen ? "-rotate-45 -translate-y-1" : "translate-y-0.5"
+            }`}
+          ></span>
         </button>
-      </div>
-      
-      {/* Mobile Menu */}
-      {isOpen ? (
-        <motion.div
-          className="min-w-[70vw] sm:min-w-[90vw] h-[75vh] flex justify-between items-center flex-col fixed top-1/2 left-1/2 -translate-x-1/2
-      -translate-y-1/2
-      py-32 bg-light/95 dark:bg-dark/95 rounded-2xl z-50 backdrop-blur-md border border-grey-light/20 dark:border-grey-dark/20 shadow-2xl
-      "
-          initial={{ scale: 0, x: "-50%", y: "-50%", opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-        >
-          <nav className="flex items-center justify-center flex-col space-y-6">
-            <CustomMobileLink
-              toggle={handleClick}
-              href="/"
-              title="Home"
-            />
-            <CustomMobileLink
-              toggle={handleClick}
-              href="/about"
-              title="About"
-            />
-            <CustomMobileLink
-              toggle={handleClick}
-              href="/projects"
-              title="Projects"
-            />
-            <CustomMobileLink
-              toggle={handleClick}
-              href="/articles"
-              title="Articles"
-            />
-            <CustomMobileLink
-              toggle={handleClick}
-              href="/contact"
-              title="Contact"
-            />
+
+        {/* Desktop Navigation - visible ONLY on lg screens and up (>= 1024px) */}
+        <div className="hidden lg:flex items-center justify-center flex-1">
+          <nav className="flex items-center justify-center space-x-6">
+            <CustomLink href="/" title="Home" />
+            <CustomLink href="/about" title="About" />
+            <CustomLink href="/projects" title="Projects" />
+            <CustomLink href="/articles" title="Articles" />
+            <CustomLink href="/contact" title="Contact" />
           </nav>
-          <nav className="flex items-center justify-center space-x-4 mt-8">
-            <motion.a
-              target={"_blank"}
-              className="w-8 h-8 flex items-center justify-center rounded-full bg-grey-light/20 dark:bg-grey-dark/20 hover:bg-primary/20 dark:hover:bg-primaryDark/20 transition-colors duration-300"
-              href="https://github.com/eazidots"
-              whileHover={{ y: -2, scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              aria-label="Checkout my Github profile"
-            >
-              <GithubIcon />
-            </motion.a>
+        </div>
 
-            <motion.a
-              target={"_blank"}
-              className="w-8 h-8 flex items-center justify-center rounded-full bg-grey-light/20 dark:bg-grey-dark/20 hover:bg-primary/20 dark:hover:bg-primaryDark/20 transition-colors duration-300"
-              href="https://linkedin.com/in/emmanuel-dotse-azilafu"
-              whileHover={{ y: -2, scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              aria-label="Checkout my LinkedIn profile"
-            >
-              <LinkedInIcon />
-            </motion.a>
+        {/* Desktop Social Links & Theme Switcher - visible ONLY on lg screens and up (>= 1024px) */}
+        <div className="hidden lg:flex items-center justify-center space-x-3">
+          <motion.a
+            target={"_blank"}
+            className="w-6 h-6 flex items-center justify-center rounded-full bg-grey-light/20 dark:bg-grey-dark/20 hover:bg-primary/20 dark:hover:bg-primaryDark/20 transition-colors duration-300"
+            href="https://github.com/eazidots"
+            whileHover={{ y: -2, scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            aria-label="Checkout my GitHub profile"
+          >
+            <GithubIcon />
+          </motion.a>
 
-            <motion.a
-              target={"_blank"}
-              className="w-8 h-8 flex items-center justify-center rounded-full bg-grey-light/20 dark:bg-grey-dark/20 hover:bg-primary/20 dark:hover:bg-primaryDark/20 transition-colors duration-300"
-              href="mailto:dotse@eazidots.com"
-              whileHover={{ y: -2, scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              aria-label="Send me an email"
-            >
-              <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-              </svg>
-            </motion.a>
+          <motion.a
+            target={"_blank"}
+            className="w-6 h-6 flex items-center justify-center rounded-full bg-grey-light/20 dark:bg-grey-dark/20 hover:bg-primary/20 dark:hover:bg-primaryDark/20 transition-colors duration-300"
+            href="https://linkedin.com/in/eazidots"
+            whileHover={{ y: -2, scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            aria-label="Checkout my LinkedIn profile"
+          >
+            <LinkedInIcon />
+          </motion.a>
 
-            <button
-              onClick={() => setMode(mode === "light" ? "dark" : "light")}
-              className={`w-8 h-8 ease flex items-center justify-center rounded-full p-1 transition-all duration-300
+          <motion.a
+            target={"_blank"}
+            className="w-6 h-6 flex items-center justify-center rounded-full bg-grey-light/20 dark:bg-grey-dark/20 hover:bg-primary/20 dark:hover:bg-primaryDark/20 transition-colors duration-300"
+            href="mailto:dotse@eazidots.com"
+            whileHover={{ y: -2, scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            aria-label="Send me an email"
+          >
+            <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+            </svg>
+          </motion.a>
+
+          <button
+            onClick={() => setMode(mode === "light" ? "dark" : "light")}
+            className={`w-6 h-6 ease flex items-center justify-center rounded-full p-1 transition-all duration-300
             ${mode === "light" ? "bg-primary text-light" : "bg-primaryDark text-light"}
             hover:scale-110
             `}
-              aria-label="theme-switcher"
-            >
-              {mode === "light" ? (
-                <SunIcon className={"fill-light"} />
-              ) : (
-                <MoonIcon className={"fill-light"} />
-              )}
-            </button>
-          </nav>
-        </motion.div>
-              ) : null}
+            aria-label="theme-switcher"
+          >
+            {mode === "light" ? (
+              <SunIcon className={"fill-light"} />
+            ) : (
+              <MoonIcon className={"fill-light"} />
+            )}
+          </button>
+        </div>
+
+        {/* Mobile Menu Overlay - visible ONLY on screens smaller than lg when isOpen is true */}
+        {isOpen && (
+          <motion.div
+            className="fixed inset-0 z-[60] flex flex-col items-center justify-center bg-light/98 dark:bg-dark/98 backdrop-blur-xl p-6 sm:p-4 lg:hidden"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+          >
+            <nav className="flex flex-col items-center space-y-8 text-2xl sm:text-xl">
+              <CustomMobileLink toggle={handleClick} href="/" title="Home" />
+              <CustomMobileLink toggle={handleClick} href="/about" title="About" />
+              <CustomMobileLink toggle={handleClick} href="/projects" title="Projects" />
+              <CustomMobileLink toggle={handleClick} href="/articles" title="Articles" />
+              <CustomMobileLink toggle={handleClick} href="/contact" title="Contact" />
+            </nav>
+            
+            <div className="flex items-center justify-center space-x-6 mt-12">
+              <motion.a
+                target={"_blank"}
+                className="w-10 h-10 flex items-center justify-center rounded-full bg-grey-light/20 dark:bg-grey-dark/20 hover:bg-primary/20 dark:hover:bg-primaryDark/20 transition-colors duration-300"
+                href="https://github.com/eazidots"
+                whileHover={{ y: -2, scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                aria-label="Checkout my Github profile"
+              >
+                <GithubIcon />
+              </motion.a>
+
+              <motion.a
+                target={"_blank"}
+                className="w-10 h-10 flex items-center justify-center rounded-full bg-grey-light/20 dark:bg-grey-dark/20 hover:bg-primary/20 dark:hover:bg-primaryDark/20 transition-colors duration-300"
+                href="https://linkedin.com/in/emmanuel-dotse-azilafu"
+                whileHover={{ y: -2, scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                aria-label="Checkout my LinkedIn profile"
+              >
+                <LinkedInIcon />
+              </motion.a>
+
+              <motion.a
+                target={"_blank"}
+                className="w-10 h-10 flex items-center justify-center rounded-full bg-grey-light/20 dark:bg-grey-dark/20 hover:bg-primary/20 dark:hover:bg-primaryDark/20 transition-colors duration-300"
+                href="mailto:dotse@eazidots.com"
+                whileHover={{ y: -2, scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                aria-label="Send me an email"
+              >
+                <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                  <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+              </motion.a>
+
+              <button
+                onClick={() => setMode(mode === "light" ? "dark" : "light")}
+                className={`w-10 h-10 ease flex items-center justify-center rounded-full p-1 transition-all duration-300
+            ${mode === "light" ? "bg-primary text-light" : "bg-primaryDark text-light"}
+            hover:scale-110
+            `}
+                aria-label="theme-switcher"
+              >
+                {mode === "light" ? (
+                  <SunIcon className={"fill-light"} />
+                ) : (
+                  <MoonIcon className={"fill-light"} />
+                )}
+              </button>
+            </div>
+          </motion.div>
+        )}
       </div>
     </header>
   );

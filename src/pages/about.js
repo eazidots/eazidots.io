@@ -7,6 +7,7 @@ import Experience from "@/components/Experience";
 import AnimatedText from "@/components/AnimatedText";
 import TransitionEffect from "@/components/TransitionEffect";
 import { HireMe2 } from "@/components/HireMe2";
+import ScrollToTop from "@/components/ScrollToTop";
 
 function AnimatedNumberFramerMotion({ value, text }) {
   const ref = useRef(null);
@@ -31,11 +32,11 @@ function AnimatedNumberFramerMotion({ value, text }) {
 
   return (
     <div className="flex flex-col items-center justify-center">
-      <span className="inline-block text-7xl font-bold md:text-6xl sm:text-5xl xs:text-4xl text-grey-dark dark:text-grey-light">
+      <span className="inline-block text-5xl font-bold md:text-4xl sm:text-3xl xs:text-2xl text-grey-dark dark:text-grey-light">
         <span ref={ref} />+
       </span>
-      <h3 className="mb-4 text-xl font-medium capitalize text-grey-dark/75 dark:text-grey-light/75 
-        text-center md:text-lg sm:text-base xs:text-sm">
+      <h3 className="mb-2 text-base font-medium capitalize text-grey-dark/75 dark:text-grey-light/75 
+        text-center md:text-sm sm:text-xs xs:text-xs">
         {text}
       </h3>
     </div>
@@ -61,28 +62,26 @@ export default function About() {
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-grey-light/20 to-transparent dark:from-transparent dark:via-grey-dark/20 dark:to-transparent z-0"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-grey-light/8 to-transparent dark:from-transparent dark:via-grey-dark/8 dark:to-transparent z-0"></div>
         
-        {/* Content */}
-        <div className="relative z-10 w-full">
-          <Layout className="pt-16">
+        {/* About Content */}
+        <div className="relative z-10 w-full max-w-4xl mx-auto flex flex-col items-center justify-center px-4 sm:px-3">
+          <Layout className="pt-6 md:pt-4 sm:pt-2">
             <AnimatedText
               text="Bridging Technology & Innovation"
-              className="mb-16 !text-6xl !leading-tight lg:!text-5xl sm:!text-4xl xs:!text-3xl sm:mb-8 text-center"
+              className="mb-8 !text-3xl !leading-tight lg:!text-2xl sm:!text-xl xs:!text-lg sm:mb-4 text-center"
             />
-
-            <div className="flex w-full items-center justify-center">
+            <div className="flex w-full flex-col items-center justify-center">
               <div className="flex w-full flex-col items-center justify-center text-center max-w-4xl">
                 <motion.h2 
-                  className="mb-8 text-2xl font-bold uppercase text-grey-dark dark:text-grey-light"
+                  className="mb-4 text-lg font-bold uppercase text-grey-dark dark:text-grey-light sm:text-base"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5 }}
                 >
                   MY JOURNEY
                 </motion.h2>
-
-                <div className="font-medium space-y-8 mb-12">
+                <div className="font-medium space-y-4 mb-8 sm:space-y-3 sm:mb-6">
                   <motion.p 
-                    className="text-grey-dark/90 dark:text-grey-light/90 text-lg leading-relaxed"
+                    className="text-grey-dark/90 dark:text-grey-light/90 text-sm sm:text-xs leading-relaxed"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.1 }}
@@ -93,9 +92,8 @@ export default function About() {
                     environment. This foundation in IT infrastructure proved invaluable as I progressed through 
                     increasingly challenging roles in healthcare technology and enterprise systems.
                   </motion.p>
-
                   <motion.p 
-                    className="text-grey-dark/90 dark:text-grey-light/90 text-lg leading-relaxed"
+                    className="text-grey-dark/90 dark:text-grey-light/90 text-sm sm:text-xs leading-relaxed"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
@@ -108,10 +106,9 @@ export default function About() {
                     of what's possible with modern technology.
                   </motion.p>
                 </div>
-
                 {/* Animated Numbers */}
                 <motion.div 
-                  className="grid grid-cols-3 gap-8 w-full mb-16"
+                  className="grid grid-cols-1 sm:grid-cols-3 gap-6 w-full mb-8 sm:gap-4 sm:mb-6"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.3 }}
@@ -120,17 +117,16 @@ export default function About() {
                   <AnimatedNumberFramerMotion value={15} text="Projects Completed" />
                   <AnimatedNumberFramerMotion value={3} text="Research Projects" />
                 </motion.div>
-
                 {/* Current Focus Section */}
                 <motion.div 
-                  className="w-full mb-16"
+                  className="w-full mb-8 sm:mb-6"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.4 }}
                 >
-                  <h2 className="font-bold text-3xl mb-6 text-grey-dark dark:text-grey-light">Current Focus</h2>
-                  <div className="bg-light/40 dark:bg-dark/40 backdrop-blur-xl rounded-2xl p-8 border border-grey-light/20 dark:border-grey-dark/20">
-                    <p className="text-grey-dark/90 dark:text-grey-light/90 text-lg leading-relaxed">
+                  <h2 className="font-bold text-xl mb-4 text-grey-dark dark:text-grey-light sm:text-lg">Current Focus</h2>
+                  <div className="bg-light/40 dark:bg-dark/40 backdrop-blur-xl rounded-2xl p-4 sm:p-3 border border-grey-light/20 dark:border-grey-dark/20">
+                    <p className="text-grey-dark/90 dark:text-grey-light/90 text-sm sm:text-xs leading-relaxed">
                       At SASEL Programmers Lab (McGill University), I'm focused on developing scientific computing solutions 
                       that bridge the gap between complex research requirements and user-friendly applications. Building on my 
                       experience in IT infrastructure and systems management, our projects combine high-performance computing 
@@ -140,7 +136,6 @@ export default function About() {
                     </p>
                   </div>
                 </motion.div>
-
                 {/* Research Projects Section */}
                 <motion.div 
                   className="w-full"
@@ -148,36 +143,35 @@ export default function About() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.5 }}
                 >
-                  <h2 className="font-bold text-3xl mb-8 text-grey-dark dark:text-grey-light">Research Projects at McGill University</h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div className="bg-light/40 dark:bg-dark/40 backdrop-blur-xl rounded-2xl p-8 border border-grey-light/20 dark:border-grey-dark/20">
-                      <h3 className="text-2xl font-bold mb-4 text-grey-dark dark:text-grey-light">PEA Protein Analysis</h3>
-                      <p className="text-grey-dark/90 dark:text-grey-light/90 mb-6 leading-relaxed">
+                  <h2 className="font-bold text-xl mb-6 text-grey-dark dark:text-grey-light sm:text-lg">Research Projects at McGill University</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-4">
+                    <div className="bg-light/40 dark:bg-dark/40 backdrop-blur-xl rounded-2xl p-4 sm:p-3 border border-grey-light/20 dark:border-grey-dark/20 mb-4 md:mb-0">
+                      <h3 className="text-lg font-bold mb-3 text-grey-dark dark:text-grey-light sm:text-base">PEA Protein Analysis</h3>
+                      <p className="text-grey-dark/90 dark:text-grey-light/90 mb-4 leading-relaxed text-sm sm:text-xs">
                         Advanced scientific computing system combining Rust's computational power with modern web technologies for protein analysis.
                         Features complex algorithms, real-time processing, and intuitive data visualization.
                       </p>
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        <span className="text-xs px-3 py-1 bg-grey-light/30 rounded-full text-grey-dark dark:text-grey-light font-medium backdrop-blur-sm border border-grey-light/20 dark:border-grey-dark/30">Rust</span>
-                        <span className="text-xs px-3 py-1 bg-grey-light/30 rounded-full text-grey-dark dark:text-grey-light font-medium backdrop-blur-sm border border-grey-light/20 dark:border-grey-dark/30">Next.js</span>
-                        <span className="text-xs px-3 py-1 bg-grey-light/30 rounded-full text-grey-dark dark:text-grey-light font-medium backdrop-blur-sm border border-grey-light/20 dark:border-grey-dark/30">FastAPI</span>
+                      <div className="flex flex-wrap gap-1 mb-3">
+                        <span className="text-xs px-2 py-1 bg-grey-light/30 rounded-full text-grey-dark dark:text-grey-light font-medium backdrop-blur-sm border border-grey-light/20 dark:border-grey-dark/30">Rust</span>
+                        <span className="text-xs px-2 py-1 bg-grey-light/30 rounded-full text-grey-dark dark:text-grey-light font-medium backdrop-blur-sm border border-grey-light/20 dark:border-grey-dark/30">Next.js</span>
+                        <span className="text-xs px-2 py-1 bg-grey-light/30 rounded-full text-grey-dark dark:text-grey-light font-medium backdrop-blur-sm border border-grey-light/20 dark:border-grey-dark/30">FastAPI</span>
                       </div>
-                      <div className="text-sm text-grey-dark/80 dark:text-grey-light/80">
+                      <div className="text-xs text-grey-dark/80 dark:text-grey-light/80">
                         SASEL Lab Project • Starting May 2025
                       </div>
                     </div>
-
-                    <div className="bg-light/40 dark:bg-dark/40 backdrop-blur-xl rounded-2xl p-8 border border-grey-light/20 dark:border-grey-dark/20">
-                      <h3 className="text-2xl font-bold mb-4 text-grey-dark dark:text-grey-light">Supply Chain Analytics</h3>
-                      <p className="text-grey-dark/90 dark:text-grey-light/90 mb-6 leading-relaxed">
+                    <div className="bg-light/40 dark:bg-dark/40 backdrop-blur-xl rounded-2xl p-4 sm:p-3 border border-grey-light/20 dark:border-grey-dark/20">
+                      <h3 className="text-lg font-bold mb-3 text-grey-dark dark:text-grey-light sm:text-base">Supply Chain Analytics</h3>
+                      <p className="text-grey-dark/90 dark:text-grey-light/90 mb-4 leading-relaxed text-sm sm:text-xs">
                         Research-focused platform for analyzing economic, environmental, and quality factors in supply chain operations.
                         Implements advanced analytics and interactive visualization for decision support.
                       </p>
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        <span className="text-xs px-3 py-1 bg-grey-light/30 rounded-full text-grey-dark dark:text-grey-light font-medium backdrop-blur-sm border border-grey-light/20 dark:border-grey-dark/30">Next.js</span>
-                        <span className="text-xs px-3 py-1 bg-grey-light/30 rounded-full text-grey-dark dark:text-grey-light font-medium backdrop-blur-sm border border-grey-light/20 dark:border-grey-dark/30">FastAPI</span>
-                        <span className="text-xs px-3 py-1 bg-grey-light/30 rounded-full text-grey-dark dark:text-grey-light font-medium backdrop-blur-sm border border-grey-light/20 dark:border-grey-dark/30">Django</span>
+                      <div className="flex flex-wrap gap-1 mb-3">
+                        <span className="text-xs px-2 py-1 bg-grey-light/30 rounded-full text-grey-dark dark:text-grey-light font-medium backdrop-blur-sm border border-grey-light/20 dark:border-grey-dark/30">Next.js</span>
+                        <span className="text-xs px-2 py-1 bg-grey-light/30 rounded-full text-grey-dark dark:text-grey-light font-medium backdrop-blur-sm border border-grey-light/20 dark:border-grey-dark/30">FastAPI</span>
+                        <span className="text-xs px-2 py-1 bg-grey-light/30 rounded-full text-grey-dark dark:text-grey-light font-medium backdrop-blur-sm border border-grey-light/20 dark:border-grey-dark/30">Django</span>
                       </div>
-                      <div className="text-sm text-grey-dark/80 dark:text-grey-light/80">
+                      <div className="text-xs text-grey-dark/80 dark:text-grey-light/80">
                         SASEL Lab Project • Starting August 2025
                       </div>
                     </div>
@@ -185,12 +179,17 @@ export default function About() {
                 </motion.div>
               </div>
             </div>
-
-            <Skills />
-            <Experience />
           </Layout>
         </div>
+
+        {/* Skills and Experience Components - Full Width */}
+        <div className="w-full relative z-10">
+          <Skills />
+          <Experience />
+        </div>
+
         <HireMe2 />
+        <ScrollToTop />
       </main>
     </>
   );

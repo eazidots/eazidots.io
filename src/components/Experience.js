@@ -8,14 +8,16 @@ const Details = ({ position, company, companyLink, time, address, work }) => {
   return (
     <li
       ref={ref}
-      className="my-8 first:mt-0 last:mb-0 w-[60%] mx-auto flex flex-col items-start justify-between md:w-[80%]"
+      className="my-8 first:mt-0 last:mb-0 w-[60%] mx-auto flex flex-col items-start justify-between md:w-[80%] sm:w-[90%]"
     >
       <LiIcon reference={ref} />
       <motion.div
-        initial={{ y: 50 }}
-        whileInView={{ y: 0 }}
+        initial={{ y: 50, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, type: "spring" }}
-        className="bg-light/40 dark:bg-dark/40 backdrop-blur-xl rounded-2xl p-6 border border-dark/10 dark:border-light/10 shadow-lg relative overflow-hidden"
+        className="bg-light/40 dark:bg-dark/40 backdrop-blur-xl rounded-2xl p-8 border border-dark/10 dark:border-light/10 shadow-lg 
+        hover:shadow-2xl transition-all duration-300 w-full relative overflow-hidden
+        md:p-6 sm:p-4"
       >
         {/* Experience Card Gradient Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-light/30 via-grey-light/15 to-transparent dark:from-dark/30 dark:via-grey-dark/15 dark:to-transparent z-0"></div>
@@ -23,7 +25,7 @@ const Details = ({ position, company, companyLink, time, address, work }) => {
         
         {/* Experience Content */}
         <div className="relative z-10">
-          <h3 className="capitalize font-bold text-2xl sm:text-xl xs:text-lg text-dark dark:text-light">
+          <h3 className="capitalize font-bold text-2xl sm:text-xl xs:text-lg text-dark dark:text-light mb-2">
             {position}{" "}
             <a
               className="capitalize text-primary dark:text-primaryDark hover:underline transition-colors"
@@ -33,10 +35,12 @@ const Details = ({ position, company, companyLink, time, address, work }) => {
               @{company}
             </a>
           </h3>
-          <span className="capitalize text-dark/75 font-medium dark:text-light/75 xs:text-sm">
+          <span className="capitalize text-dark/70 font-medium dark:text-light/70 xs:text-sm block mb-4">
             {time} | {address}
           </span>
-          <p className="font-medium w-full md:text-sm text-dark/90 dark:text-light/90 mt-2 leading-relaxed">{work}</p>
+          <p className="font-medium w-full md:text-sm text-dark/90 dark:text-light/90 leading-relaxed">
+            {work}
+          </p>
         </div>
       </motion.div>
     </li>
@@ -52,20 +56,21 @@ const Experience = () => {
   });
 
   return (
-    <div className="my-64 relative overflow-hidden">
+    <div className="my-64 md:my-32 sm:my-16 relative overflow-hidden">
       {/* Experience Section Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-light/15 via-grey-light/8 to-transparent dark:from-dark/15 dark:via-grey-dark/8 dark:to-transparent z-0"></div>
       <div className="absolute inset-0 bg-gradient-to-tl from-transparent via-primary/2 to-transparent dark:from-transparent dark:via-primaryDark/2 dark:to-transparent z-0"></div>
       
       <div className="relative z-10">
-        <h2 className="font-bold text-8xl mb-32 w-full text-center md:text-6xl xs:text-4xl md:mb-16 text-dark dark:text-light">
+        <h2 className="font-bold text-8xl mb-32 w-full text-center md:text-6xl sm:text-5xl xs:text-4xl md:mb-16 sm:mb-8 text-dark dark:text-light">
           Experience
         </h2>
 
         <div ref={ref} className="relative w-[75%] mx-auto lg:w-[90%] md:w-full">
           <motion.div
-            className="absolute left-9 top-0 w-[4px] md:w-[2px] md:left-[30px] xs:left-[20px] h-full bg-gradient-to-b from-primary via-primary/80 to-primary shadow-lg 
-              origin-top dark:from-primaryDark dark:via-primaryDark/80 dark:to-primaryDark dark:shadow-lg backdrop-blur-sm rounded-full"
+            className="absolute left-9 top-0 w-[4px] md:w-[2px] md:left-[30px] xs:left-[20px] h-full 
+            bg-gradient-to-b from-primary via-primary/80 to-primary shadow-lg 
+            origin-top dark:from-primaryDark dark:via-primaryDark/80 dark:to-primaryDark dark:shadow-lg backdrop-blur-sm rounded-full"
             style={{ scaleY: scrollYProgress }}
           />
 
@@ -117,13 +122,14 @@ const Experience = () => {
           </ul>
         </div>
 
-        <div className="mt-40 flex items-center justify-center">
+        <div className="mt-32 md:mt-16 sm:mt-8 flex items-center justify-center">
           <Link
             href="/projects/"
-            className="flex items-center rounded-lg border-2 border-solid bg-light/50 dark:bg-dark/50 backdrop-blur-xl p-2.5 px-6 text-lg font-semibold
-              capitalize text-dark dark:text-light hover:border-primary dark:hover:border-primaryDark hover:bg-primary/20 dark:hover:bg-primaryDark/20 
+            className="flex items-center rounded-lg border-2 border-solid bg-light/50 dark:bg-dark/50 backdrop-blur-xl p-3 px-8 text-lg font-semibold
+              capitalize text-dark dark:text-light hover:border-primary dark:hover:border-primaryDark 
+              hover:bg-primary/20 dark:hover:bg-primaryDark/20 
               border-dark/20 dark:border-light/20 shadow-lg relative overflow-hidden
-              md:p-2 md:px-4 md:text-base transition-all duration-300"
+              md:p-2 md:px-4 md:text-base sm:text-sm transition-all duration-300"
           >
             {/* Button Gradient Background */}
             <div className="absolute inset-0 bg-gradient-to-br from-light/40 via-primary/10 to-transparent dark:from-dark/40 dark:via-primaryDark/10 dark:to-transparent z-0"></div>
