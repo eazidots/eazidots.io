@@ -2,68 +2,51 @@ import AnimatedText from "@/components/AnimatedText";
 import { HireMe2 } from "@/components/HireMe2";
 import Layout from "@/components/Layout";
 import Head from "next/head";
-import Image from "next/image";
 import Link from "next/link";
 import TransitionEffect from "@/components/TransitionEffect";
 import ScrollToTop from "@/components/ScrollToTop";
 import { motion } from "framer-motion";
 
-const TechStack = ({ icon, label }) => {
-  return (
-    <motion.div 
-      className="flex flex-col items-center justify-center p-2 m-2"
-      whileHover={{ scale: 1.1 }}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3 }}
-    >
-      <span className="text-3xl mb-1">{icon}</span>
-      <span className="text-sm text-center">{label}</span>
-    </motion.div>
-  );
-};
-
 const SkillTag = ({ children, delay = 0 }) => {
   return (
-    <motion.span 
-      className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-primary/15 text-primary dark:bg-primaryDark/25 dark:text-light mr-1 mb-1 backdrop-blur-sm border border-primary/20 dark:border-primaryDark/30 sm:px-2 sm:py-0.5 sm:text-xs"
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      initial={{ opacity: 0, x: -20 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ delay: delay * 0.1 }}
+    <motion.span
+      className="inline-block px-3 py-1.5 rounded-lg text-sm font-medium bg-light dark:bg-dark text-primary dark:text-primaryDark border-2 border-primary/20 dark:border-primaryDark/30 shadow-sm sm:px-2 sm:py-1 sm:text-xs"
+      whileHover={{ scale: 1.05, y: -2 }}
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: delay * 0.08 }}
     >
       {children}
     </motion.span>
   );
 };
 
-const FeaturedProject = ({ title, description, tech, link, delay = 0 }) => {
+const FeaturedProject = ({ title, description, tech, link, delay = 0, isExternal = false }) => {
+  const linkProps = isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {};
+
   return (
-    <motion.div 
-      className="w-full p-3 rounded-xl border border-solid border-dark/10 dark:border-light/10 bg-light/40 dark:bg-dark/40 backdrop-blur-xl shadow-lg relative overflow-hidden sm:p-2"
+    <motion.div
+      className="w-full rounded-2xl border-2 border-dark/10 dark:border-light/20 bg-light dark:bg-dark shadow-lg hover:border-primary/50 dark:hover:border-primaryDark/50 transition-all duration-300 overflow-hidden"
       whileHover={{ y: -5 }}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: delay * 0.2 }}
+      transition={{ delay: delay * 0.15 }}
     >
-      {/* Project Card Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-light/30 via-coffee-light/15 to-grey-lightest/30 dark:from-dark/30 dark:via-coffee-dark/10 dark:to-grey-darkest/30 z-0"></div>
-      <div className="absolute inset-0 bg-gradient-to-tl from-transparent via-primary/4 to-transparent dark:from-transparent dark:via-primaryDark/4 dark:to-transparent z-0"></div>
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-grey-light/8 to-transparent dark:from-transparent dark:via-grey-dark/8 dark:to-transparent z-0"></div>
-      
+      {/* Top accent bar */}
+      <div className="h-1 bg-gradient-to-r from-primary to-primary/60 dark:from-primaryDark dark:to-primaryDark/60"></div>
+
       {/* Project Content */}
-      <div className="relative z-10">
-        <h3 className="text-lg font-bold mb-2 text-dark dark:text-light sm:text-base sm:mb-1">{title}</h3>
-        <p className="text-xs mb-2 text-dark/90 dark:text-light/90 sm:text-xs sm:mb-1 leading-relaxed">{description}</p>
-        <div className="flex flex-wrap gap-1 mb-2 sm:mb-1">
+      <div className="p-5 sm:p-4">
+        <h3 className="text-lg font-bold mb-2 text-dark dark:text-light sm:text-base">{title}</h3>
+        <p className="text-sm text-dark/70 dark:text-light/70 mb-3 leading-relaxed sm:text-xs sm:mb-2">{description}</p>
+        <div className="flex flex-wrap gap-1.5 mb-3 sm:gap-1 sm:mb-2">
           {tech.map((t, index) => (
-            <span key={index} className="text-xs px-2 py-0.5 bg-primary/30 rounded-full text-primary dark:text-primaryDark font-medium backdrop-blur-sm border border-primary/20 dark:border-primaryDark/30 sm:text-xs sm:px-1.5">
+            <span key={index} className="text-xs px-2 py-0.5 bg-primary/10 rounded-full text-primary dark:text-primaryDark font-medium border border-primary/20 dark:border-primaryDark/30">
               {t}
             </span>
           ))}
         </div>
-        <Link href={link} className="text-primary dark:text-primaryDark hover:underline inline-flex items-center font-medium text-sm sm:text-xs">
+        <Link href={link} {...linkProps} className="text-sm font-medium text-primary dark:text-primaryDark hover:underline inline-flex items-center sm:text-xs">
           View Project <span className="ml-1">→</span>
         </Link>
       </div>
@@ -75,43 +58,40 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Emmanuel Dotse Azilafu - Full-Stack Developer & IT Infrastructure Manager</title>
+        <title>Emmanuel Dotse Azilafu | Full-Stack Developer</title>
         <meta
           name="description"
-          content="Full-stack developer specializing in Next.js, FastAPI, Django, and Rust. Experienced in IT infrastructure management and cloud solutions."
+          content="Full-stack developer specializing in Next.js, FastAPI, Django, and Rust. Experienced in IT infrastructure and cloud solutions."
         />
       </Head>
 
       <TransitionEffect />
       <article className="flex min-h-screen items-center text-dark dark:text-light sm:items-start relative overflow-hidden">
-        {/* Gradient Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-light via-coffee-light/40 to-grey-lightest dark:from-dark dark:via-coffee-dark/35 dark:to-grey-darkest z-0"></div>
-        <div className="absolute inset-0 bg-gradient-to-tl from-transparent via-primary/12 to-transparent dark:from-transparent dark:via-primaryDark/12 dark:to-transparent z-0"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-grey-light/20 to-transparent dark:from-transparent dark:via-grey-dark/20 dark:to-transparent z-0"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-coffee-light/8 to-transparent dark:from-transparent dark:via-coffee-dark/8 dark:to-transparent z-0"></div>
-        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-coffee-light/3 to-transparent dark:from-transparent dark:via-coffee-dark/3 dark:to-transparent z-0"></div>
-        
+        {/* Clean Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-light via-light to-light/95 dark:from-dark dark:via-dark dark:to-dark/95 z-0"></div>
+        <div className="absolute inset-0 bg-gradient-to-tl from-primary/5 via-transparent to-primary/10 dark:from-primaryDark/10 dark:via-transparent dark:to-primaryDark/5 z-0"></div>
+
         {/* Content */}
         <div className="relative z-10 w-full">
-          <Layout className="!pt-4 md:!pt-3 sm:!pt-2">
-            <div className="flex w-full items-center justify-center pt-2 pb-4 sm:pt-1 sm:pb-2">
+          <Layout className="!pt-8 md:!pt-6 sm:!pt-4">
+            <div className="flex w-full items-center justify-center pt-4 pb-6 sm:pt-2 sm:pb-4">
               <div className="flex w-full flex-col items-center justify-center text-center max-w-4xl mx-auto">
                 <AnimatedText
                   text="Emmanuel Dotse Azilafu"
-                  className="!text-center !text-5xl xl:!text-4xl lg:!text-3xl md:!text-2xl sm:!text-xl xs:!text-lg"
+                  className="!text-center !text-5xl xl:!text-4xl lg:!text-3xl md:!text-2xl sm:!text-xl"
                 />
-                
-                <motion.h2 
-                  className="text-lg font-medium text-primary dark:text-primaryDark mt-2 mb-2 text-center md:text-base sm:text-sm xs:text-xs"
+
+                <motion.h2
+                  className="text-xl font-medium text-primary dark:text-primaryDark mt-3 mb-4 text-center md:text-lg sm:text-base"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
                 >
-                  Full-Stack Developer & IT Infrastructure Manager
+                  Full-Stack Developer & IT Infrastructure Specialist
                 </motion.h2>
 
-                <motion.p 
-                  className="my-2 text-sm text-dark/90 dark:text-light/90 max-w-2xl mx-auto text-center font-medium md:text-sm sm:text-xs xs:text-xs leading-relaxed sm:my-1"
+                <motion.p
+                  className="text-dark/70 dark:text-light/70 max-w-2xl mx-auto text-center text-base leading-relaxed mb-6 md:text-sm sm:text-sm sm:mb-4"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
@@ -119,16 +99,17 @@ export default function Home() {
                   Crafting robust full-stack solutions with modern technologies while managing enterprise IT infrastructure and cloud services.
                 </motion.p>
 
-                <div className="w-full mt-3 mb-4 sm:mt-2 sm:mb-3">
-                  <motion.h3 
-                    className="text-base font-semibold mb-2 text-center md:text-sm sm:text-xs xs:text-xs sm:mb-1"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4 }}
-                  >
-                    Tech Stack & Expertise:
-                  </motion.h3>
-                  <div className="flex flex-wrap justify-center gap-1 sm:gap-0.5">
+                {/* Tech Stack */}
+                <motion.div
+                  className="w-full mb-8 sm:mb-6"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.4 }}
+                >
+                  <h3 className="text-sm font-semibold uppercase tracking-wide text-dark/60 dark:text-light/60 mb-4 sm:text-xs sm:mb-3">
+                    Tech Stack
+                  </h3>
+                  <div className="flex flex-wrap justify-center gap-2 sm:gap-1.5">
                     <SkillTag delay={1}>Next.js</SkillTag>
                     <SkillTag delay={2}>FastAPI</SkillTag>
                     <SkillTag delay={3}>Django</SkillTag>
@@ -136,66 +117,77 @@ export default function Home() {
                     <SkillTag delay={5}>AWS</SkillTag>
                     <SkillTag delay={6}>GCP</SkillTag>
                   </div>
-                </div>
+                </motion.div>
 
-                <div className="mt-2 flex items-center gap-3 justify-center flex-wrap sm:gap-2 sm:flex-col sm:space-y-2 sm:w-full">
+                {/* CTA Buttons */}
+                <motion.div
+                  className="flex items-center gap-4 justify-center flex-wrap sm:gap-3 sm:flex-col sm:w-full"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                >
                   <Link
                     href="/projects"
-                    className="flex items-center rounded-lg border-2 border-solid bg-primary p-2 px-4 text-base font-semibold
-                      capitalize text-light hover:bg-transparent hover:text-primary 
-                      dark:bg-primaryDark dark:text-light dark:hover:bg-transparent dark:hover:text-light
-                      md:p-2 md:px-4 md:text-sm sm:text-xs sm:px-3 sm:py-2 sm:w-full sm:justify-center transition-all duration-300"
+                    className="flex items-center rounded-xl bg-primary px-6 py-3 text-base font-semibold
+                      text-light hover:bg-primary/90 shadow-lg hover:shadow-xl
+                      dark:bg-primaryDark dark:hover:bg-primaryDark/90
+                      md:px-5 md:py-2.5 md:text-sm sm:w-full sm:justify-center transition-all duration-300"
                   >
                     View Projects
                   </Link>
                   <Link
                     href="/about"
-                    className="flex items-center rounded-lg border-2 border-primary p-2 px-4 text-base font-semibold
-                      capitalize text-primary hover:bg-primary hover:text-light
-                      dark:text-light dark:hover:bg-primaryDark
-                      md:p-2 md:px-4 md:text-sm sm:text-xs sm:px-3 sm:py-2 sm:w-full sm:justify-center transition-all duration-300"
+                    className="flex items-center rounded-xl border-2 border-primary px-6 py-3 text-base font-semibold
+                      text-primary hover:bg-primary hover:text-light
+                      dark:border-primaryDark dark:text-primaryDark dark:hover:bg-primaryDark dark:hover:text-light
+                      md:px-5 md:py-2.5 md:text-sm sm:w-full sm:justify-center transition-all duration-300"
                   >
                     About Me
                   </Link>
-                </div>
+                </motion.div>
               </div>
             </div>
 
-            {/* Featured Projects Section - Mobile Optimized */}
-            <motion.div 
-              className="w-full mt-6 sm:mt-3"
+            {/* Featured Projects Section */}
+            <motion.div
+              className="w-full mt-10 sm:mt-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
             >
-              <h2 className="font-bold text-xl mb-3 text-center sm:text-lg xs:text-base sm:mb-2">Featured Projects</h2>
-              <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-3 sm:gap-2">
-                <FeaturedProject 
-                  title="PEA Protein Analysis"
-                  description="Advanced protein analysis system with complex computational processing and modern web interface."
-                  tech={["Next.js", "FastAPI", "Django", "Rust"]}
-                  link="/projects/pea-protein-analysis"
+              <h2 className="font-bold text-2xl mb-6 text-center text-dark dark:text-light sm:text-xl sm:mb-4">
+                Featured Projects
+              </h2>
+              <div className="grid grid-cols-3 gap-6 lg:grid-cols-2 md:gap-4 sm:grid-cols-1">
+                <FeaturedProject
+                  title="SASEL Lab - McGill University"
+                  description="Research platform for sustainable food systems, environmental nutrition tools, and AI-powered analytics."
+                  tech={["Next.js", "FastAPI", "Django"]}
+                  link="https://sasellab.com"
+                  isExternal={true}
                   delay={1}
                 />
-                <FeaturedProject 
-                  title="Supply Chain Analytics"
-                  description="Specialized system for economic, environmental, and quality analysis in supply chain management."
-                  tech={["Next.js", "FastAPI", "Django"]}
-                  link="/projects/fontaine-sante"
+                <FeaturedProject
+                  title="PEA Protein Analysis System"
+                  description="Advanced scientific computing platform for protein analysis with complex computational processing in Rust."
+                  tech={["Rust", "Next.js", "FastAPI"]}
+                  link="https://proteinprocess.io"
+                  isExternal={true}
                   delay={2}
                 />
-                <FeaturedProject 
-                  title="Research Data Tool"
-                  description="Intelligent data collection and analysis platform with automated statistical processing."
-                  tech={["Python", "Django", "ML"]}
-                  link="/projects/research-tool"
+                <FeaturedProject
+                  title="Food Systems Analytics"
+                  description="Comprehensive analytics platform for food systems research, sustainability metrics, and data visualization."
+                  tech={["Python", "Django", "FastAPI"]}
+                  link="https://foodsystemsanalytics.com/app/"
+                  isExternal={true}
                   delay={3}
                 />
               </div>
             </motion.div>
 
-            <motion.div 
-              className="w-full mt-6 sm:mt-3 text-center pb-4 sm:pb-2"
+            <motion.div
+              className="w-full mt-8 text-center pb-6 sm:mt-6 sm:pb-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
@@ -215,3 +207,4 @@ export default function Home() {
     </>
   );
 }
+
